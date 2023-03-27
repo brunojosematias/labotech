@@ -73,6 +73,16 @@ class UsersControllers {
 
   delete(request, response) {
     // deletar um usuário
+    const { id } = request.params;
+
+    const user = UsersRepository.findById(id);
+    if (!user) {
+      return response.status(404).json({ error: 'User not found' });
+    }
+
+    UsersRepository.delete(id);
+
+    response.sendStatus(204);
   }
 }
 
