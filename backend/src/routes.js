@@ -7,5 +7,6 @@ const router = Router();
 router.get('/users', ControllerUsers.index);
 router.get('/users/:id', ControllerUsers.show);
 router.post('/users', ControllerUsers.store);
+router.put('/users/:id', ControllerUsers.update);
 
 export { router };

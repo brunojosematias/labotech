@@ -48,6 +48,27 @@ class UsersControllers {
 
   update(request, response) {
     // editar um usuário
+    const { id } = request.params;
+    const { name, email, password } = request.body;
+
+    const userExists = UsersRepository.findById(id);
+    if (!userExists) {
+      return response.status(404).json({ error: 'User not found' });
+    }
+
+    if (!name) {
+      return response.status(400).json({ error: 'Name is required' });
+    }
+    if (!email) {
+      return response.status(400).json({ error: 'E-mail is required' });
+    }
+    if (!password) {
+      return response.status(400).json({ error: 'Password is required' });
+    }
+
+    const user = UsersRepository.update(id, { name, email, password });
+
+    response.json(user);
   }
 
   delete(request, response) {
