@@ -8,6 +8,14 @@ class UserRepository {
     return users;
   }
 
+  findById(id) {
+    return users.find((user) => user.id === id);
+  }
+
+  findByEmail(email) {
+    return users.find((user) => user.email === email);
+  }
+
   create({ name, email, password }) {
     const newUser = {
       id: v4(),
