@@ -17,6 +17,11 @@ class UsersControllers {
 
   store(request, response) {
     // criar um usuário
+    const { name, email, password } = request.body;
+
+    const user = UsersRepository.create({ name, email, password });
+
+    response.json(user);
   }
 
   update(request, response) {
