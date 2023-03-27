@@ -1,13 +1,13 @@
-import { Router } from 'express';
-import ControllerUsers from './controllers/UsersControllers.js';
+const { Router } = require('express');
+const ControllerUsers = require('./controllers/UsersControllers');
 
 const router = Router();
 
-// Rotas para CRUD do usuário
+// Rotas de CRUD de usuário
 router.get('/users', ControllerUsers.index);
 router.get('/users/:id', ControllerUsers.show);
 router.post('/users', ControllerUsers.store);
 router.put('/users/:id', ControllerUsers.update);
 router.delete('/users/:id', ControllerUsers.delete);
 
-export { router };
+module.exports = router;

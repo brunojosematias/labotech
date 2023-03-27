@@ -1,6 +1,4 @@
-// Responsável por fazer a regra de negócio dos usuários (CRUD)
-
-import UsersRepository from '../repositories/UsersRepository.js';
+const UsersRepository = require('../repositories/UsersRepository');
 
 class UsersControllers {
   index(request, response) {
@@ -86,4 +84,4 @@ class UsersControllers {
   }
 }
 
-export default new UsersControllers();
+module.exports = new UsersControllers();
