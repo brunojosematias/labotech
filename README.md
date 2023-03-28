@@ -1,9 +1,9 @@
 ## Você irá usar esse comando somente uma vez em todo o projeto
 
-#### Irá clonar o repositório para a máquina
+### Irá clonar o repositório para a máquina
 git clone git@github.com:brunojosematias/labotech.git
 
-#### por precaução utilize esse comnado para iniciar o git no repositório
+### por precaução utilize esse comnado para iniciar o git no repositório
 git init
 
 
@@ -20,7 +20,7 @@ git checkout secondary
 #### irá selecionar todas as novas alterações para serem commitadas
 git add .
 
-#### irá criar o commit. Para esse processo use digite feat antes da descrição do commit como está abaixo
+### irá criar o commit. Para esse processo use digite feat antes da descrição do commit como está abaixo
 git commit -m "feat: descreva o que você criou"
 
 #### irá adicionar as alterações no repositório
@@ -29,11 +29,11 @@ git push origin secondary
 
 ## Faça esse processo somente terminar de desenvolver E SE ESTIVER TUDO FUNCIONANDO
 
-#### irá selecionar a branch main
+### irá selecionar a branch main
 git checkout main
 
-#### irá adicionar as alterações feitas na branch secondary para a main
+### irá adicionar as alterações feitas na branch secondary para a main
 git merge secondary
 
-#### irá adicionar as alterações no repositório
+### irá adicionar as alterações no repositório
 git push origin main
