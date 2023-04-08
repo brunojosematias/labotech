@@ -1,6 +1,6 @@
 const UsersRepository = require('../repositories/UsersRepository');
 
-class UsersControllers {
+class UsersController {
   index(request, response) {
     // Listar todos os usuários
     const users = UsersRepository.findAll();
@@ -84,4 +84,4 @@ class UsersControllers {
   }
 }
 
-module.exports = new UsersControllers();
+module.exports = new UsersController();

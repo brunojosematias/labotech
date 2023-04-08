@@ -1,13 +1,13 @@
 const { Router } = require('express');
-const ControllerUsers = require('./controllers/UsersControllers');
+const UsersController = require('./controllers/UsersController');
 
 const router = Router();
 
 // Rotas de CRUD de usuário
-router.get('/users', ControllerUsers.index);
-router.get('/users/:id', ControllerUsers.show);
-router.post('/users', ControllerUsers.store);
-router.put('/users/:id', ControllerUsers.update);
-router.delete('/users/:id', ControllerUsers.delete);
+router.get('/users', UsersController.index);
+router.get('/users/:id', UsersController.show);
+router.post('/users', UsersController.store);
+router.put('/users/:id', UsersController.update);
+router.delete('/users/:id', UsersController.delete);
 
 module.exports = router;
