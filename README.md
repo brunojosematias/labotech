@@ -7,7 +7,7 @@ git clone git@github.com:brunojosematias/labotech.git
 git init
 
 
-## Sempre utilize esse comando quando abrir a pasta do projeto. Ele irá puxar todas as auterações feita pelo grufo do repositório para a máquina
+## Sempre utilize esse comando quando abrir a pasta do projeto. Ele irá puxar todas as auterações feitas pelo grupo do repositório para a máquina
 git pull
 
 
