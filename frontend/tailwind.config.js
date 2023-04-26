@@ -3,7 +3,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'regal-blue': '#243c5a',
+        'bg-regal-blue': '#243c5a',
       },
     },
   },
