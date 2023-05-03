@@ -5,7 +5,7 @@
 git clone git@github.com:brunojosematias/labotech.git
 ```
 
-### por precaução utilize esse comnado para iniciar o git no repositório
+### por precaução utilize esse comando para iniciar o git no repositório
 ```bash
 git init
 ```
