@@ -31,13 +31,16 @@ export function Home() {
 
             <h2 className='mt-[4.9375rem] text-orange text-5xl text-center'>O app</h2>
 
-            <div className='w-96 ml-32 mt-[5.3125rem]'>
-              <p className=' text-white text-center text-2xl'>
+            <div className='flex ml-36 mt-[5.3125rem]'>
+              <p className='text-white text-center text-2xl'>
                 Um app para melhorar seu <br/>
                 bem-estar durante o trabalho!
               </p>
             </div>
+          </section>
 
+          <section>
+            
           </section>
         </div>
   )
