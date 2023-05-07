@@ -17,35 +17,33 @@ export function Login() {
         Os <span className="text-orange">LaboInstrutores</span> estavam com saudades</p>
       </div>
 
+      <div className="flex gap-10">
       <div className="text-orange w-4/12">
-        <a href="https://imgbb.com/%22%3E">
           <img src="https://i.ibb.co/NCfBmHT/image.png" alt="Aline" border="0" />
-        </a>
-
         <p className="text-white font-medium"><span className="text-orange">Aline</span> te dá boas-vindas!</p>
       </div>
 
       <div className="">
           <h2 className="text-orange font-medium text-2xl">Login</h2>
 
-          <div className="">
-            <form className="" action="#" method="POST">
+          <div className="w-full">
+            <form className="w-full" action="#" method="POST">
 
-              <section className="text-white border-white border-solid font-extralight">
-              <div className="">
+              <section className="text-white border-white border-solid font-extralight w-96">
+              <div className="w-full">
                   <input type="email" name="email" value="" placeholder="E-mail" id="email" autoComplete="email"
-                  required  className="bg-background border rounded-3xl mb-7 w-3/12 py-3 pl-8"/>
+                  required  className="bg-background border rounded-3xl mb-7 py-3 pl-8"/>
                 </div>
 
-                <div className="">
+                <div className="w-full">
                   <input type ="password" name="password" value="" placeholder="Senha" id="password" autoComplete="current-password"
-                  required className="bg-background border rounded-3xl mb-4 w-3/12 py-3 pl-8"/>
+                  required className="bg-background border rounded-3xl mb-4 py-3 pl-8"/>
                 </div>
               </section>
 
               <div className="flex">
                 <div className="text-white font-extralight">
-                    <input type="checkbox" value="lsRememberMe" id="rememberMe" /> <label for="rememberMe">Lembrar de mim</label>
+                    <input type="checkbox" value="lsRememberMe" id="rememberMe"/> <label for="rememberMe">Lembrar de mim</label>
                 </div> 
 
                 <div  className="text-white underline font-bold ml-24">
@@ -67,6 +65,10 @@ export function Login() {
             </div>
           </div>
         </div>
+      </div>
+
+
+   
     </section>
     </>
   )
