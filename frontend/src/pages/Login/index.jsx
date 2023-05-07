@@ -39,7 +39,7 @@ export function Login() {
               <div className="flex">
                 <div className="text-white font-extralight flex items-center">
                     <input type="checkbox" value="lsRememberMe" id="rememberMe" className="appearance-none h-4 w-4 border border-spacing-2 rounded-sm mr-2 focus:outline-none checked:bg-orange"/> <label for="rememberMe">Lembrar de mim</label>
-                </div> 
+                </div>
 
                 <div className="text-white underline font-bold ml-24 hover:text-orange">
                     <a href="#">Esqueceu a senha?</a>
