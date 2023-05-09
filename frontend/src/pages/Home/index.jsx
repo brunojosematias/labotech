@@ -8,14 +8,17 @@ import person3 from '../../assets/images/person-3.svg';
 import comment1 from '../../assets/images/comment-1.svg';
 import comment2 from '../../assets/images/comment-2.svg';
 import laboInstrutores from '../../assets/images/labo-instrutores.svg';
+import AlineAndArthur from '../../assets/images/aline-and-arthur.svg';
+import EmilyAndLucas from '../../assets/images/emily-and-lucas.svg';
+
 
 export function Home() {
 
   return(
-    <div className=''>
+    <div className='bg-background'>
       <Navbar/>
 
-      <section className='px-5 bg-background pt-[3.1875rem]'>
+      <section className='px-5 pt-[3.1875rem]'>
         <div className='flex-col items-center gap-[9.125rem] md:flex md:flex-row'>
           <img src={person1} alt="" />
 
@@ -46,7 +49,7 @@ export function Home() {
         </div>
       </section>
 
-        <section className='px-5 bg-black pt-[3.4375rem]'>
+        <section className='px-5 pt-[3.4375rem]'>
           <div className=''>
             <div>
               <img src={comment1} alt="" />
@@ -57,7 +60,7 @@ export function Home() {
           </div>
         </section>
 
-        <section className='bg-black px-5 pt-36'>
+        <section className='px-5 pt-36'>
           <h2 className='text-orange text-5xl text-center mb-[4.8125rem]'>Exercícios personalizados</h2>
           <div className='flex-col items-center gap-[9.125rem] md:flex md:flex-row'>
             <img src={person3} alt="" />
@@ -83,7 +86,7 @@ export function Home() {
           </div>
         </section>
 
-          <section className='bg-black px-5 pt-36'>
+          <section className='px-5 pt-36'>
             <h2 className='text-orange text-5xl text-center mb-[4.8125rem]'>Exercícios personalizados</h2>
             <div className='flex-col items-center justify-center gap-48 md:flex md:flex-row'>
               <div className='text-center text-white text-lg flex flex-col gap-16'>  
@@ -105,6 +108,22 @@ export function Home() {
               <img src={laboInstrutores} alt="" />
             </div>
           </section>
+
+          <section className='px-36 pt-56'>
+              <div>
+                <img src= {AlineAndArthur} alt="" />
+              </div>
+          </section>
+
+          <section className='px-36 pt-80 pb-[16.625rem]'>
+            <div className='flex justify-between items-center'>
+              <img src={EmilyAndLucas} alt="" />
+            </div>
+          </section>
+
+          <footer className='h-56'>
+
+          </footer>
 
     </div>
   )

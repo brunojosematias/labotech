@@ -26,7 +26,7 @@ function classNames(...classes) {
 
 export function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-background">
       {({ open }) => (
         <>
           <div className="mx-14 h-32 px-2 flex items-center sm:px-6 lg:px-8">
@@ -66,9 +66,9 @@ export function Navbar() {
                           // item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           // 'rounded-md px-3 py-2 font-medium'
 
-                          item.type === 'log' ? 'text-orange-400 flex gap-0' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          item.type === 'log' ? 'text-orange flex gap-0' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 font-medium',
-                          item.type === 'sing' && 'bg-orange-400 text-white px-7 py-[0.4375rem] rounded-xl flex gap-0'
+                          item.type === 'sing' && 'bg-orange text-white px-7 py-[0.4375rem] rounded-xl flex gap-0'
                         )}
                       >
                         {item.name}
@@ -152,9 +152,9 @@ export function Navbar() {
                     // item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     // 'block rounded-md px-3 py-2 text-base font-medium'
                     
-                    item.type === 'log' ? 'text-orange-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    item.type === 'log' ? 'text-orange' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'rounded-md px-3 py-2 font-medium',
-                    item.type === 'sing' && 'bg-orange-400 text-white px-7 py-[0.4375rem] rounded-xl'
+                    item.type === 'sing' && 'bg-orange text-white px-7 py-[0.4375rem] rounded-xl'
                     
                   )}
                   // aria-current={item.current ? 'page' : undefined}

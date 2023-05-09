@@ -3,7 +3,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#303134',
+        background: '#202124',
         orange: '#FF725C'
       },
     },
