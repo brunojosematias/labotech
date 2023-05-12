@@ -1,4 +1,4 @@
-export function Config() {
+export function ForgotPassword() {
 
   return (
     <h1>Config</h1>
