@@ -29,7 +29,7 @@ export function Login() {
         <div>
             <h2 className="text-orange font-medium text-3xl text-center pr-60 mb-16">Login</h2>
             <div>
-              <form className="flex flex-col text-orange pr-60" action="#" method="POST">
+              <form className="flex flex-col font-extralight text-orange pr-60" action="#" method="POST">
                     <input type="email" name="email" placeholder="E-mail" id="email" autoComplete="email"
                     required className="bg-background border rounded-3xl mb-7 py-3 pl-8 focus:outline-none focus:border-orange transition-all"/>
 
@@ -50,9 +50,9 @@ export function Login() {
               </form>
 
               <div className="font-extralight">
-              <p className="text-white">Ainda não é membro?
-                <a href="#" className="text-orange underline ml-1 hover:text-white" id="cadastrar">Cadastre-se agora mesmo!</a>
-              </p>
+                <p className="text-white">Ainda não é membro?
+                  <a href="#" className="text-orange underline ml-1 hover:text-white" id="cadastrar">Cadastre-se agora mesmo!</a>
+                </p>
               </div>
             </div>
           </div>
