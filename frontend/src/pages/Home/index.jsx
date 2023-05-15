@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { isValidElement, useRef, useState } from 'react';
 
-import { Navbar } from '../../components/Navbar'
+import { NavBar } from '../../components/Navbar';
+import { ButtonStart } from '../../components/ButtonStart';
 
 import person1 from '../../assets/images/person-1.svg';
 import person2 from '../../assets/images/person-2.svg';
@@ -12,19 +13,31 @@ import AlineAndArthur from '../../assets/images/aline-and-arthur.svg';
 import EmilyAndLucas from '../../assets/images/emily-and-lucas.svg';
 
 export function Home() {
+  const [scroll, setScroll] = useState(0);
+
+  function handleScroll() {
+    setScroll(window.scrollY)
+  }
+
+  window.addEventListener('scroll', handleScroll);
+
+  console.log(scroll);
+
 
   return(
-
-    <div className='bg-background'>
+    <div className='bg-background scroll-smooth'>
       <div className='container mx-auto'>
-        <Navbar />
 
-        <section className='px-5 pt-[3.1875rem]'>
+        <div className='fixed top-0 left-0 w-full'>
+          <NavBar heightScroll={scroll}/>
+        </div>
+
+        <section className='px-5 pt-48' id='home'>
           <div className='flex-col items-center gap-[9.125rem] md:flex md:flex-row'>
-            <img src={person1} alt="" />
+            <img src={person1} alt="pessoa se alongando" />
 
-            <div className='text-center text-white'>
-              <h1 className='text-3xl mb-[8.1875rem]'>Bem-vindo(a) ao <span className='text-orange'>LaboTech</span>!</h1>
+            <div className='text-center text-white mt-6'>
+              <h1 className='text-3xl mb-12 md:mb-[8.1875rem]'>Bem-vindo(a) ao <span className='text-orange'>LaboTech</span>!</h1>
 
               <p className='flex flex-col text-center text-lg'>
                 <span className='mb-5'>
@@ -39,34 +52,32 @@ export function Home() {
               </p>
             </div>
           </div>
-
-          <h2 className='mt-[4.9375rem] text-orange text-5xl text-center'>O app</h2>
-
-          <div className='flex ml-36 mt-[5.3125rem]'>
-            <p className='text-white text-center text-2xl mb-[3.5625rem]'>
-              Um app para melhorar seu <br/>
-              bem-estar durante o trabalho!
-            </p>
-          </div>
         </section>
 
-          <section className='px-5 pt-[3.4375rem]'>
-            <div className='flex gap-36'>
-              <div>
-                <img src={comment1} alt="" />
-                <img src={comment2} alt="" className='ml-80'/>
+          <section className='px-5 pt-36' id='comments-app'>
+            <h2 className='text-orange text-5xl text-center mb-[4.8125rem]'>O app</h2>
+            <div className='mt-[5.3125rem] text-center md:ml-36 md:flex'>
+              <p className='text-white text-center text-2xl mb-[3.5625rem]'>
+                Um app para melhorar seu <br/>
+                bem-estar durante o trabalho!
+              </p>
+            </div>
+            <div className='flex flex-col items-center gap-[1.125rem] md:flex md:flex-row md:justify-end md:gap-36'>
+              <div className='md:mt-24'>
+                <img src={comment1} alt="" className='w-[20.0625rem] h-[11.8125rem] md:w-[25.125rem] md:h-[12.125rem]'/>
+                <img src={comment2} alt="" className='ml-36 w-[20.0625rem] h-[11.8125rem] md:w-[25.125rem] md:h-[12.125rem] md:ml-80'/>
               </div>
 
-              <img src={person2} alt="" />
+              <img src={person2} alt="mulher meditando" className='order-first md:order-none' />
             </div>
           </section>
 
-          <section className='px-5 pt-36'>
+          <section className='px-5 pt-36' id='informations-exercises'>
             <h2 className='text-orange text-5xl text-center mb-[4.8125rem]'>Exercícios personalizados</h2>
             <div className='flex-col items-center gap-[9.125rem] md:flex md:flex-row'>
-              <img src={person3} alt="" />
+              <img src={person3} alt="Mulher se alongando" />
 
-              <div className='text-center text-white text-lg flex flex-col gap-16'>  
+              <div className='text-center text-white text-lg mt-[2.0625rem] flex flex-col gap-10 md:gap-16 md:mt-0'>  
                   <p>
                     Nós disponibilizaremos <span className='text-orange'>inúmeros</span><br/>
                     <span className='text-orange'>exercícios</span> que irão suprir as suas<br/>
@@ -87,10 +98,10 @@ export function Home() {
             </div>
           </section>
 
-            <section className='px-5 pt-36'>
+            <section className='px-5 pt-36' id='instructors'>
               <h2 className='text-orange text-5xl text-center mb-[4.8125rem]'>Exercícios personalizados</h2>
-              <div className='flex-col items-center justify-center gap-48 md:flex md:flex-row'>
-                <div className='text-center text-white text-lg flex flex-col gap-16'>  
+              <div className='flex flex-col gap-[2.5rem] md:gap-48 md:flex md:flex-row md:items-center md:justify-center'>
+                <div className='text-center text-white text-lg flex flex-col gap-[2.3125rem] md:gap-16'>  
                     <p>
                       Conheça a nossa equipe de <span className='text-orange'>LaboInstrutores</span>!<br/>
                     </p>
@@ -106,7 +117,7 @@ export function Home() {
                     </p>
                 </div>
 
-                <img src={laboInstrutores} alt="" />
+                <img src={laboInstrutores} alt="Instrutores LaboTech" />
               </div>
             </section>
 
@@ -122,10 +133,11 @@ export function Home() {
               </div>
             </section>
 
+            <ButtonStart />
+
             <footer className='h-56'>
 
             </footer>
-
       </div>
     </div>
   )
