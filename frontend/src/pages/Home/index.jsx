@@ -1,144 +1,178 @@
-import React, { isValidElement, useRef, useState } from 'react';
+import React, { isValidElement, useRef, useState } from "react";
 
-import { NavBar } from '../../components/Navbar';
-import { ButtonStart } from '../../components/ButtonStart';
+import { NavBar } from "../../components/Navbar";
+import { ButtonStart } from "../../components/ButtonStart";
 
-import person1 from '../../assets/images/person-1.svg';
-import person2 from '../../assets/images/person-2.svg';
-import person3 from '../../assets/images/person-3.svg';
-import comment1 from '../../assets/images/comment-1.svg';
-import comment2 from '../../assets/images/comment-2.svg';
-import laboInstrutores from '../../assets/images/labo-instrutores.svg';
-import AlineAndArthur from '../../assets/images/aline-and-arthur.svg';
-import EmilyAndLucas from '../../assets/images/emily-and-lucas.svg';
+import logo from "../../assets/logo.svg";
+import person1 from "../../assets/images/person-1.svg";
+import person2 from "../../assets/images/person-2.svg";
+import person3 from "../../assets/images/person-3.svg";
+import comment1 from "../../assets/images/comment-1.svg";
+import comment2 from "../../assets/images/comment-2.svg";
+import laboInstrutores from "../../assets/images/labo-instrutores.svg";
 
 export function Home() {
   const [scroll, setScroll] = useState(0);
 
   function handleScroll() {
-    setScroll(window.scrollY)
+    setScroll(window.scrollY);
   }
 
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener("scroll", handleScroll);
 
-  console.log(scroll);
-
-
-  return(
-    <div className='bg-background scroll-smooth'>
-      <div className='container mx-auto'>
-
-        <div className='fixed top-0 left-0 w-full'>
-          <NavBar heightScroll={scroll}/>
+  return (
+    <div className="bg-background scroll-smooth font-nunito">
+      <div className="container mx-auto">
+        <div className="fixed top-0 left-0 w-full">
+          <NavBar heightScroll={scroll} />
         </div>
 
-        <section className='px-5 pt-48' id='home'>
-          <div className='flex-col items-center gap-[9.125rem] md:flex md:flex-row'>
+        <section className="px-5 pt-48" id="home">
+          <div className="flex-col items-center gap-[9.125rem] md:flex md:flex-row">
             <img src={person1} alt="pessoa se alongando" />
 
-            <div className='text-center text-white mt-6'>
-              <h1 className='text-3xl mb-12 md:mb-[8.1875rem]'>Bem-vindo(a) ao <span className='text-orange'>LaboTech</span>!</h1>
+            <div className="text-center text-white mt-6">
+              <h1 className="text-3xl mb-12 md:mb-[8.1875rem]">
+                Bem-vindo(a) ao <span className="text-orange">LaboTech</span>!
+              </h1>
 
-              <p className='flex flex-col text-center text-lg'>
-                <span className='mb-5'>
-                  Se sente <span className='text-orange'>cansado</span>? <span className='text-orange'>Travado</span>?
-                </span> 
-
-                Deixe com a gente!<br/>
-                Com as nossas listas de exercícios<br/>
-                personalizados você voltará<br/>
-                a trabalhar com sua capacidade<br/>
+              <p className="flex flex-col text-center text-lg">
+                <span className="mb-5">
+                  Se sente <span className="text-orange">cansado</span>?{" "}
+                  <span className="text-orange">Travado</span>?
+                </span>
+                Deixe com a gente!
+                <br />
+                Com as nossas listas de exercícios
+                <br />
+                personalizados você voltará
+                <br />
+                a trabalhar com sua capacidade
+                <br />
                 máxima!
               </p>
             </div>
           </div>
         </section>
 
-          <section className='px-5 pt-36' id='comments-app'>
-            <h2 className='text-orange text-5xl text-center mb-[4.8125rem]'>O app</h2>
-            <div className='mt-[5.3125rem] text-center md:ml-36 md:flex'>
-              <p className='text-white text-center text-2xl mb-[3.5625rem]'>
-                Um app para melhorar seu <br/>
-                bem-estar durante o trabalho!
+        <section className="px-5 pt-36" id="comments-app">
+          <h2 className="text-orange text-5xl text-center mb-[4.8125rem]">
+            O app
+          </h2>
+          <div className="mt-[5.3125rem] text-center md:ml-36 md:flex">
+            <p className="text-white text-center text-2xl mb-[3.5625rem]">
+              Um app para melhorar seu <br />
+              bem-estar durante o trabalho!
+            </p>
+          </div>
+          <div className="flex flex-col items-center gap-[1.125rem] md:flex md:flex-row md:justify-end md:gap-36">
+            <div className="md:mt-24">
+              <img
+                src={comment1}
+                alt=""
+                className="w-[20.0625rem] h-[11.8125rem] md:w-[25.125rem] md:h-[12.125rem]"
+              />
+              <img
+                src={comment2}
+                alt=""
+                className="ml-36 w-[20.0625rem] h-[11.8125rem] md:w-[25.125rem] md:h-[12.125rem] md:ml-80"
+              />
+            </div>
+
+            <img
+              src={person2}
+              alt="mulher meditando"
+              className="order-first md:order-none"
+            />
+          </div>
+        </section>
+
+        <section className="px-5 pt-36" id="informations-exercises">
+          <h2 className="text-orange text-5xl text-center mb-[4.8125rem]">
+            Exercícios personalizados
+          </h2>
+          <div className="flex-col items-center gap-[9.125rem] md:flex md:flex-row">
+            <img src={person3} alt="Mulher se alongando" />
+
+            <div className="text-center text-white text-lg mt-[2.0625rem] flex flex-col gap-10 md:gap-16 md:mt-0">
+              <p>
+                Nós disponibilizaremos{" "}
+                <span className="text-orange">inúmeros</span>
+                <br />
+                <span className="text-orange">exercícios</span> que irão suprir
+                as suas
+                <br />
+                mais diversas necessidades!
+                <br />
+              </p>
+
+              <p>
+                <span className="text-orange">Dores na coluna</span> por ficar
+                sentado
+                <br />o dia inteiro numa{" "}
+                <span className="text-orange">posição desconfortável?</span>
+                <br />
+                Não se preocupe! A gente cuida disso!
+                <br />
+              </p>
+
+              <p>
+                <span className="text-orange">Dores no pescoço</span>? Não seja
+                por isso!
+                <br />
+                Nós cuidaremos disso também!
               </p>
             </div>
-            <div className='flex flex-col items-center gap-[1.125rem] md:flex md:flex-row md:justify-end md:gap-36'>
-              <div className='md:mt-24'>
-                <img src={comment1} alt="" className='w-[20.0625rem] h-[11.8125rem] md:w-[25.125rem] md:h-[12.125rem]'/>
-                <img src={comment2} alt="" className='ml-36 w-[20.0625rem] h-[11.8125rem] md:w-[25.125rem] md:h-[12.125rem] md:ml-80'/>
-              </div>
+          </div>
+        </section>
 
-              <img src={person2} alt="mulher meditando" className='order-first md:order-none' />
+        <section className="px-5 pt-36" id="instructors">
+          <h2 className="text-orange text-5xl text-center mb-[4.8125rem]">
+            Exercícios personalizados
+          </h2>
+          <div className="flex flex-col gap-[2.5rem] md:gap-48 md:flex md:flex-row md:items-center md:justify-center">
+            <div className="text-center text-white text-lg flex flex-col gap-[2.3125rem] md:gap-16">
+              <p>
+                Conheça a nossa equipe de{" "}
+                <span className="text-orange">LaboInstrutores</span>!<br />
+              </p>
+
+              <p>
+                São eles quem vão te{" "}
+                <span className="text-orange">
+                  guiar por todos os
+                  <br />
+                  seus exercícios.
+                </span>
+                !<br />
+              </p>
+
+              <p>
+                Eles estão te esperando de braços abertos.
+                <br />
+                Junte-se agora a eles na{" "}
+                <span className="text-orange">LaboTech</span>!
+              </p>
             </div>
-          </section>
 
-          <section className='px-5 pt-36' id='informations-exercises'>
-            <h2 className='text-orange text-5xl text-center mb-[4.8125rem]'>Exercícios personalizados</h2>
-            <div className='flex-col items-center gap-[9.125rem] md:flex md:flex-row'>
-              <img src={person3} alt="Mulher se alongando" />
+            <img src={laboInstrutores} alt="Instrutores LaboTech" />
+          </div>
+        </section>
 
-              <div className='text-center text-white text-lg mt-[2.0625rem] flex flex-col gap-10 md:gap-16 md:mt-0'>  
-                  <p>
-                    Nós disponibilizaremos <span className='text-orange'>inúmeros</span><br/>
-                    <span className='text-orange'>exercícios</span> que irão suprir as suas<br/>
-                    mais diversas necessidades!<br/>
-                  </p>
+        <section className="md:px-36 md:pt-56">
+          <div className="bg-aline-and-arthur bg-no-repeat bg-center bg-contain  h-screen"></div>
+        </section>
 
-                  <p>
-                  <span className='text-orange'>Dores na coluna</span> por ficar sentado<br/>
-                    o dia inteiro numa <span className='text-orange'>posição desconfortável?</span><br/>
-                    Não se preocupe! A gente cuida disso!<br/>
-                  </p>
+        <section className="md:px-36 md:pt-80 md:pb-[16.625rem]">
+          <div className="bg-emily-and-lucas bg-no-repeat bg-center bg-contain  h-screen"></div>
+        </section>
 
-                  <p>
-                  <span className='text-orange'>Dores no pescoço</span>? Não seja por isso!<br/>
-                    Nós cuidaremos disso também!
-                  </p>
-              </div>
-            </div>
-          </section>
+        <ButtonStart />
 
-            <section className='px-5 pt-36' id='instructors'>
-              <h2 className='text-orange text-5xl text-center mb-[4.8125rem]'>Exercícios personalizados</h2>
-              <div className='flex flex-col gap-[2.5rem] md:gap-48 md:flex md:flex-row md:items-center md:justify-center'>
-                <div className='text-center text-white text-lg flex flex-col gap-[2.3125rem] md:gap-16'>  
-                    <p>
-                      Conheça a nossa equipe de <span className='text-orange'>LaboInstrutores</span>!<br/>
-                    </p>
-
-                    <p>
-                    São eles quem vão te <span className='text-orange'>guiar por todos os<br/>
-                    seus exercícios.</span>!<br/>
-                    </p>
-
-                    <p>
-                    Eles estão te esperando de braços abertos.<br/>
-                    Junte-se agora a eles na <span className='text-orange'>LaboTech</span>!
-                    </p>
-                </div>
-
-                <img src={laboInstrutores} alt="Instrutores LaboTech" />
-              </div>
-            </section>
-
-            <section className='px-36 pt-56'>
-                <div>
-                  <img src= {AlineAndArthur} alt="" />
-                </div>
-            </section>
-
-            <section className='px-36 pt-80 pb-[16.625rem]'>
-              <div className='flex justify-between items-center'>
-                <img src={EmilyAndLucas} alt="" />
-              </div>
-            </section>
-
-            <ButtonStart />
-
-            <footer className='h-56'>
-
-            </footer>
+        <footer className="h-20">
+          <img src={logo} alt="Logo LaboTech" />
+        </footer>
       </div>
     </div>
-  )
+  );
 }

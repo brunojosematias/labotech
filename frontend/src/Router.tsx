@@ -12,7 +12,7 @@ export function Router() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/cadastro" element={<Register />} />
-      <Route path="/senha" element={<ForgotPassword />} />
+      <Route path="/recuperar-senha" element={<ForgotPassword />} />
     </Routes>
   )
 }
