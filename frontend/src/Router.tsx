@@ -1,10 +1,9 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
-import { Login } from './pages/Login';
-import { Register } from './pages/Register';
-import { ForgotPassword } from './pages/ForgotPassword';
-
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
+import { ForgotPassword } from "./pages/ForgotPassword";
 
 export function Router() {
   return (
@@ -14,5 +13,5 @@ export function Router() {
       <Route path="/cadastro" element={<Register />} />
       <Route path="/recuperar-senha" element={<ForgotPassword />} />
     </Routes>
-  )
+  );
 }
