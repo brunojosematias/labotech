@@ -3,6 +3,7 @@ import React from "react";
 import arthur from "../../assets/images/arthur.svg";
 import logo from "../../assets/logo.svg";
 import arrow from "../../assets/icons/arrow.svg";
+
 import { Code } from "./forms/Code";
 import { NewPassword } from "./forms/NewPassword";
 import { GetBack } from "./forms/GetBack";
