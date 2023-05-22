@@ -19,12 +19,12 @@ export function Login() {
       <div className="flex items-center justify-between">
         <div className="text-orange pl-16">
           <p className="text-white font-extralight text-center leading-10 pt-6">
-            Bem-Vindo(a) de volta ao{" "}
+            Bem-Vindo(a) de volta ao
             <span className="text-orange font-normal">LaboTech</span>!<br />
             Os <span className="text-orange">LaboInstrutores</span> estavam com
             saudades!
           </p>
-          <img src={aline} alt="Aline" border="0" className="w-11/12" />
+          <img src={aline} alt="Aline" className="w-11/12 text-white" />
           <p className="text-white font-medium pl-80 pt-3">
             <span className="text-orange">Aline</span> te dá boas-vindas!
           </p>
@@ -36,7 +36,7 @@ export function Login() {
           </h2>
           <div>
             <form
-              className="flex flex-col font-extralight text-orange pr-60"
+              className="flex flex-col font-extralight text-white pr-60"
               action="#"
               method="POST"
             >
@@ -76,7 +76,9 @@ export function Login() {
                 </div>
               </div>
 
-              <Button>Entrar</Button>
+              <div className="mt-5 mb-8">
+                <Button>Entrar</Button>
+              </div>
             </form>
 
             <div className="font-extralight">

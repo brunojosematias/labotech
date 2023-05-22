@@ -5,6 +5,8 @@ export default {
       colors: {
         background: "#202124",
         orange: "#FF725C",
+        cinza_claro: "#323238",
+        cinza_escuro: "#29292E",
       },
 
       fontFamily: {
