@@ -9,7 +9,7 @@ import { Button } from "../../components/Button";
 
 export function Login() {
   return (
-    <div className="bg-background h-screen scroll-smooth pb-10">
+    <div className="bg-background h-screen pb-10 md:px-7">
       <div className="container mx-auto">
         <div className="flex items-center pt-6 pl-6">
           <a href="" className="mr-3.5 w-10">
