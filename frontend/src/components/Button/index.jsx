@@ -1,4 +1,4 @@
-export function Button({ children, buttonColor }) {
+export function Button({ children }) {
   return (
     <button
       type="submit"

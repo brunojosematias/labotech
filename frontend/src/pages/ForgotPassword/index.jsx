@@ -38,7 +38,7 @@ export function ForgotPassword() {
             </p>
           </div>
 
-          <GetBack />
+          <NewPassword />
         </div>
       </div>
     </div>
