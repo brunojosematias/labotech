@@ -4,8 +4,8 @@ import { NavBar } from "../../components/Navbar";
 import { ButtonStart } from "../../components/ButtonStart";
 
 import logo from "../../assets/logo.svg";
-import person1 from "../../assets/images/person-1.svg";
-import person2 from "../../assets/images/person-2.svg";
+import arthur2 from "../../assets/images/arthur-2.svg";
+import alinecelular from "../../assets/images/aline-fone.svg";
 import person3 from "../../assets/images/person-3.svg";
 import comment1 from "../../assets/images/comment-1.svg";
 import comment2 from "../../assets/images/comment-2.svg";
@@ -27,9 +27,9 @@ export function Home() {
           <NavBar heightScroll={scroll} />
         </div>
 
-        <section className="px-5 pt-48" id="home">
+        <section className="px-10 pt-32 md:px-44 md:pt-48" id="home">
           <div className="flex-col items-center gap-[9.125rem] md:flex md:flex-row">
-            <img src={person1} alt="pessoa se alongando" />
+            <img src={arthur2} alt="Arthur foto" />
 
             <div className="text-center text-white mt-6">
               <h1 className="text-3xl mb-12 md:mb-[8.1875rem]">
@@ -80,8 +80,8 @@ export function Home() {
             </div>
 
             <img
-              src={person2}
-              alt="mulher meditando"
+              src={alinecelular}
+              alt="Aline com o celular"
               className="order-first md:order-none"
             />
           </div>
@@ -169,7 +169,7 @@ export function Home() {
 
         <ButtonStart />
 
-        <footer className="h-20">
+        <footer className="h-20 pl-7">
           <img src={logo} alt="Logo LaboTech" />
         </footer>
       </div>

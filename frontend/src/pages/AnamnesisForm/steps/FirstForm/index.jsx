@@ -4,7 +4,7 @@ export function FirstForm() {
   return (
     <div>
       <form
-        className="flex flex-col font-extralight text-white px-9 md:pl-0 md:pr-60"
+        className="flex flex-col font-extralight text-white px-9 md:px-72"
         action="#"
         method="POST"
       >
@@ -25,12 +25,17 @@ export function FirstForm() {
           id="password"
           autoComplete="current-password"
           required
-          className="bg-background border rounded-3xl mb-4 py-3 pl-8 pr-2 focus:outline-none focus:border-orange transition-all"
+          className="bg-background border rounded-3xl mb-7 py-3 pl-8 pr-2 focus:outline-none focus:border-orange transition-all"
         />
 
-        <div className="mt-5 mb-8">
-          <Button>Entrar</Button>
-        </div>
+        <input
+          type="date"
+          name="dtnasc"
+          placeholder="Data de nascimento"
+          id="dtnasc"
+          required
+          className="bg-background border rounded-3xl mb-7 py-3 pl-8 pr-5 focus:outline-none focus:border-orange transition-all"
+        />
       </form>
     </div>
   );

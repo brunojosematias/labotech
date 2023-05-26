@@ -6,7 +6,6 @@ import arrow from "../../assets/icons/arrow.svg";
 
 import { Code } from "./forms/Code";
 import { NewPassword } from "./forms/NewPassword";
-import { GetBack } from "./forms/GetBack";
 
 export function ForgotPassword() {
   return (

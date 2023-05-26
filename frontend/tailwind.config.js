@@ -7,6 +7,7 @@ export default {
         orange: "#FF725C",
         cinza_claro: "#323238",
         cinza_escuro: "#29292E",
+        cinza_branco: "#AAAAAA",
       },
 
       fontFamily: {
