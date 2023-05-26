@@ -1,7 +1,0 @@
-# server.js: iniciar o servidor: http://localhost:3333
-# Rotas: chama os métodos do Controller
-# Controller: responsável por exeutar o CRUD
-# Repositórie: responsável por manipular o banco de dados
-
-
-Rota -> Controller -> Repositóry -> Banco de Dados
