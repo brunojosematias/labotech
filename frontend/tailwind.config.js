@@ -17,11 +17,8 @@ export default {
       backgroundImage: {
         "aline-and-arthur": "url('./assets/images/aline-and-arthur.svg')",
         "emily-and-lucas": "url('./assets/images/emily-and-lucas.svg')",
-<<<<<<< HEAD
         aline: "url(./assets/images/aline.svg)",
         laboinstrutores: "url(./assets/images/laboinstrutores.svg)",
-=======
->>>>>>> a582b207738fb222ba6af41be2491aa932e07096
       },
     },
   },
