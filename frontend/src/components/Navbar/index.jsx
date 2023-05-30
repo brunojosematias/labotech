@@ -106,10 +106,10 @@ export function NavBar({ heightScroll, sizeHeight }) {
                 'text-white w-max whitespace-nowrap md:hidden after:content-[""] after:bg-orange after:w-0 after:h-[2px] after:block hover:after:w-full hover:text-orange after:transition-all transition-colors duration-200',
 
                 item.type === "log" &&
-                  '!text-orange w-max order-first md:hidden after:content-[""] after:bg-orange after:w-0 after:h-[2px] after:block hover:after:w-full hover:text-orange after:transition-all',
+                  '!text-orange w-max md:hidden after:content-[""] after:bg-orange after:w-0 after:h-[2px] after:block hover:after:w-full hover:text-orange after:transition-all',
 
                 item.type === "sing" &&
-                  "text-white order-first bg-orange px-[1.875rem] py-2 rounded-lg md:block after:content-none transition-all hover:after:bg-orange hover:after:w-0 hover:after:h-[2px] hover:after:block hover:text-white hover:bg-opacity-80 active:bg-orange",
+                  "text-white bg-orange px-[1.875rem] py-2 rounded-lg md:block after:content-none transition-all hover:after:bg-orange hover:after:w-0 hover:after:h-[2px] hover:after:block hover:text-white hover:bg-opacity-80 active:bg-orange",
 
                 heightScroll >= 600 &&
                   heightScroll < 1600 &&
