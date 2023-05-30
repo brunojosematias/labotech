@@ -17,6 +17,7 @@ export default {
         "aline-and-arthur": "url('./assets/images/aline-and-arthur.svg')",
         "emily-and-lucas": "url('./assets/images/emily-and-lucas.svg')",
         aline: "url(./assets/images/aline.svg)",
+        laboinstrutores: "url(./assets/images/laboinstrutores.svg)",
       },
     },
   },
