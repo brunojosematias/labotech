@@ -7,7 +7,6 @@ import { ForgotPassword } from "./pages/ForgotPassword";
 import { Exercises } from "./pages/Exercises";
 import { AnamnesisForm } from "./pages/AnamnesisForm";
 import { GetBack } from "./pages/ForgotPassword/GetBack";
-import { Table } from "./components/Table";
 
 export function Router() {
   return (

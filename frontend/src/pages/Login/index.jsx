@@ -22,8 +22,8 @@ export function Login() {
           <div className="text-orange pl-1 flex items-center pt-6 md:pt-6 md:block md:pl-16">
             <p className="text-white font-extralight text-center order-2 leading-10">
               Bem-Vindo(a) de volta ao
-              <span className="text-orange font-normal">LaboTech</span>!<br />
-              Os <span className="text-orange">LaboInstrutores</span> estavam
+              <span className="text-orange font-normal"> LaboTech</span>!<br />
+              Os<span className="text-orange"> LaboInstrutores </span>estavam
               com saudades!
             </p>
             <div className="block">
@@ -33,7 +33,7 @@ export function Login() {
                 className="text-white w-52 md:w-11/12"
               />
               <p className="text-white font-medium pt-3 pl-10 text-sm md:text-base md:pl-80">
-                <span className="text-orange">Aline</span> te dá boas-vindas!
+                <span className="text-orange">Aline </span>te dá boas-vindas!
               </p>
             </div>
           </div>
@@ -74,12 +74,12 @@ export function Login() {
                       type="checkbox"
                       value="lsRememberMe"
                       id="rememberMe"
-                      className="appearance-none h-4 w-4 border border-spacing-2 rounded-sm mr-2 focus:outline-none checked:bg-orange"
+                      className="appearance-none h-4 w-4 border border-spacing-2 rounded-sm mr-2 ml-3 focus:outline-none checked:bg-orange"
                     />
                     <label for="rememberMe">Lembrar de mim</label>
                   </div>
 
-                  <div className="text-white underline font-bold ml-36 md:ml-24 hover:text-orange">
+                  <div className="text-white underline decoration-1 font-bold ml-32 md:ml-24 hover:text-orange">
                     <Link to="/recuperar-senha">Esqueceu a senha?</Link>
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export function Login() {
                   Ainda não é membro?
                   <a
                     href="#"
-                    className="text-orange underline ml-1 hover:text-white"
+                    className="text-orange underline decoration-1 ml-1 hover:text-white"
                     id="cadastrar"
                   >
                     Cadastre-se agora mesmo!

@@ -5,23 +5,24 @@ import aline2 from "../../assets/images/aline-2.svg";
 
 import { NavBar } from "../../components/Navbar";
 import { Timer } from "../../components/Timer";
+import { Table } from "../../components/Table";
 
 export function Exercises() {
   return (
-    <div className="bg-background h-screen px-7">
+    <div className="bg-background px-4 md:px-7">
       <NavBar />
       <div className="container mx-auto">
-        <div className="bg-cinza_claro flex items-center rounded-3xl mx-10 mt-3 h-24">
+        <div className="bg-cinza_claro flex items-center rounded-3xl mt-3 h-24 md:mx-10 md:h-24">
           <img
             src={emily}
             alt="Emily cansada"
-            className="w-36 text-white ml-24 absolute top-20"
+            className="text-white absolute w-36 top-[4.5rem] ml-8 md:ml-24 md:top-20 md:w-36"
           />
-          <p className="text-white font-normal ml-72 text-xl">
+          <p className="text-white font-normal ml-44 md:ml-72 md:text-xl">
             Quer revisitar sua ficha de anamnese?
             <a
               href="#"
-              className="text-orange underline ml-1 hover:text-white"
+              className="text-orange underline ml-10 md:ml-1 hover:text-white"
               id="ficha_anamnese"
             >
               Clique aqui e veja agora
@@ -31,7 +32,7 @@ export function Exercises() {
         </div>
 
         <div className="flex">
-          <div className="bg-cinza_escuro pt-8 ml-36 mt-10 w-72 text-center">
+          <div className="bg-cinza_escuro pt-8 mt-36 mb-28 text-center md:ml-36 md:w-72">
             <p className="text-white">
               Lembre de fazer seus
               <br />
@@ -40,15 +41,21 @@ export function Exercises() {
             <img src={aline2} alt="Aline" />
           </div>
 
-          <div className="block">
-            <div className="ml-80 pt-6">
-              <Timer />
-            </div>
+            <div className="block">
+              <div className="">
+                <div className="ml-44 pt-6">
+                  <Timer />
+                </div>
 
-            <button className="w-96 ml-80 text-orange text-center bg-background font-normal text-xl border-2 border-orange rounded-2xl py-4 mt-4 hover:bg-orange hover:text-black transition-all">
-              Começar exercícios
-            </button>
-          </div>
+                <button className="w-96 ml-80 text-orange text-center bg-background font-normal text-xl border-2 border-orange rounded-2xl py-4 mt-4 hover:bg-orange hover:text-black transition-all">
+                  Começar exercícios
+                </button>
+              </div>
+
+              <div className="ml-36">
+                <Table />
+              </div>
+            </div>
         </div>
       </div>
     </div>
