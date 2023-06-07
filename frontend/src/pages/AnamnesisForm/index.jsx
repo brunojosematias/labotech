@@ -12,7 +12,7 @@ import { ButtonSubmit } from "../../components/ButtonSubmit";
 
 export function AnamnesisForm() {
   return (
-    <div className="bg-background scroll-smooth pb-7 h-screen">
+    <div className="bg-background scroll-smooth pb-7">
       <div className="container mx-auto">
         <div className="px-7">
           <div className="flex items-center pt-6 pl-6">

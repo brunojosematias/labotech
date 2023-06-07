@@ -1,7 +1,8 @@
 import { Navbar } from "../../components/Navbar";
 import { Table } from "../../components/Table";
 
-export function Perfil() {
+
+export function Profile() {
   return (
     <>
       <Navbar />
@@ -10,7 +11,7 @@ export function Perfil() {
         <div className="bg-[#80A1C1] h-32"></div>
         <div className="container mx-auto">
           <div className="flex items-center gap-6 absolute top-14">
-            <div className="bg-cinza_escuro rounded-full w-48 h-48 border-background border-4 ">
+            <div className="bg-cinza_escuro rounded-full w-40 h-40 border-background border-4 ml-3">
               <img src="" alt="" />
             </div>
 
@@ -22,7 +23,7 @@ export function Perfil() {
             <span className="text-lg text-[#AAAAAA] mt-6">x anos</span>
           </div>
 
-          <div className="mt-40">
+          <div className="mt-40 bg-background">
             <Table />
           </div>
         </div>

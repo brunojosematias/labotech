@@ -16,7 +16,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export function NavBar({ heightScroll, sizeHeight }) {
+export function Navbar({ heightScroll, sizeHeight }) {
   const [toggle, setToggle] = useState(false);
 
   function handleToggle() {

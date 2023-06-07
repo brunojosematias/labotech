@@ -9,8 +9,8 @@ import { Button } from "../../components/Button";
 
 export function Login() {
   return (
-    <div className="bg-background h-screen pb-10 md:px-7">
-      <div className="container mx-auto">
+    <div className="bg-background pb-7 md:pb-0 md:px-7">
+      <div className="container mx-auto h-screen">
         <div className="flex items-center pt-6 pl-6">
           <a href="" className="mr-3.5 w-10">
             <img src={arrow} alt="Arrow" border="0" />
@@ -19,7 +19,7 @@ export function Login() {
         </div>
 
         <div className="block items-center justify-between md:flex">
-          <div className="text-orange pl-1 flex items-center pt-6 md:pt-6 md:block md:pl-16">
+          <div className="text-orange pl-1 flex items-center pt-6 md:pt-4 md:block md:pl-16">
             <p className="text-white font-extralight text-center order-2 leading-10">
               Bem-Vindo(a) de volta ao
               <span className="text-orange font-normal"> LaboTech</span>!<br />

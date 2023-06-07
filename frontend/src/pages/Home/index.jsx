@@ -1,6 +1,6 @@
 import React, { isValidElement, useRef, useState } from "react";
 
-import { NavBar } from "../../components/Navbar";
+import { Navbar } from "../../components/Navbar";
 import { ButtonStart } from "../../components/ButtonStart";
 
 import logo from "../../assets/logo.svg";
@@ -24,7 +24,7 @@ export function Home() {
     <div className="bg-background scroll-smooth font-nunito">
       <div className="container mx-auto">
         <div className="fixed top-0 left-0 w-full">
-          <NavBar heightScroll={scroll} />
+          <Navbar heightScroll={scroll} />
         </div>
 
         <section className="px-10 pt-32 md:px-44 md:pt-48" id="home">
@@ -95,7 +95,7 @@ export function Home() {
             <img
               src={emily}
               alt="Mulher se alongando"
-              className="w-4/12 ml-28"
+              className="w-80 ml-20 md:ml-28 md:w-4/12"
             />
 
             <div className="text-center text-white text-lg mt-[2.0625rem] flex flex-col gap-10 md:gap-16 md:mt-0">

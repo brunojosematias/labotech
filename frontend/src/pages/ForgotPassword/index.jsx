@@ -9,8 +9,8 @@ import { NewPassword } from "./forms/NewPassword";
 
 export function ForgotPassword() {
   return (
-    <div className="bg-background h-screen scroll-smooth md:px-7">
-      <div className="container mx-auto">
+    <div className="bg-background scroll-smooth md:px-7">
+      <div className="container mx-auto h-screen">
         <div className="flex items-center pt-6 pl-6">
           <a href="" className="w-10 mr-3.5">
             <img src={arrow} alt="Arrow" border="0" />

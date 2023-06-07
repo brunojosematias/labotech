@@ -7,6 +7,7 @@ import { ForgotPassword } from "./pages/ForgotPassword";
 import { Exercises } from "./pages/Exercises";
 import { AnamnesisForm } from "./pages/AnamnesisForm";
 import { GetBack } from "./pages/ForgotPassword/GetBack";
+import { Profile } from "./pages/Profile";
 
 export function Router() {
   return (
@@ -18,6 +19,7 @@ export function Router() {
       <Route path="/exercicios" element={<Exercises />} />
       <Route path="/ficha-anamnese" element={<AnamnesisForm />} />
       <Route path="/voltar-login" element={<GetBack />} />
+      <Route path="/perfil" element={<Profile />} />
     </Routes>
   );
 }
