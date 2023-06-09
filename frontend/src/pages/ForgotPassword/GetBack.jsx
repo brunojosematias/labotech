@@ -8,8 +8,8 @@ import { Button } from "../../components/Button";
 
 export function GetBack() {
   return (
-    <div className="bg-background scroll-smooth h-screen md:px-7">
-      <div className="container mx-auto">
+    <div className="bg-background scroll-smooth md:px-7">
+      <div className="container mx-auto h-screen">
         <div className="flex items-center pt-6 pl-6">
           <a href="" className="w-10 mr-3.5">
             <img src={arrow} alt="Arrow" border="0" />
@@ -19,7 +19,7 @@ export function GetBack() {
 
         <div className="items-center justify-around block mt-14 md:flex">
           <div className="text-white">
-            <p className="text-center font-extralight pt-6">
+            <p className="text-center font-extralight md:pt-6">
               Eba! Você conseguiu recuperar sua conta!
             </p>
             <img

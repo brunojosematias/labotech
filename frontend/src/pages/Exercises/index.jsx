@@ -2,6 +2,7 @@ import React from "react";
 
 import emily from "../../assets/images/emily-tired.svg";
 import aline2 from "../../assets/images/aline-2.svg";
+import aline from "../../assets/images/aline.svg";
 
 import { Navbar } from "../../components/Navbar";
 import { Timer } from "../../components/Timer";
@@ -11,12 +12,14 @@ export function Exercises() {
   return (
     <div className="bg-background md:px-7">
       <Navbar />
+      <div className="border-b-[1px] bg-cinza_escuro mx-20 opacity-25"></div>
+
       <div className="container mx-auto">
-        <div className="bg-cinza_claro flex items-center rounded-3xl mt-3 h-24 mx-4 md:mx-10 md:h-24">
+        <div className="bg-cinza_claro flex items-center rounded-3xl mt-5 h-24 mx-4 md:mx-10 md:h-24">
           <img
             src={emily}
             alt="Emily cansada"
-            className="text-white absolute w-36 top-[4.5rem] ml-8 md:ml-24 md:top-20 md:w-36"
+            className="text-white absolute w-36 top-[5rem] ml-8 md:ml-24 md:top-[5.5rem] md:w-36"
           />
           <p className="text-white font-normal ml-44 md:ml-80 md:text-xl">
             Quer revisitar sua ficha de anamnese?
@@ -38,7 +41,8 @@ export function Exercises() {
               <br />
               exercícios diários!
             </p>
-            <img src={aline2} alt="Aline" className="w-36 md:w-full" />
+            <img src={aline2} alt="Aline" className="w-full hidden md:block" />
+            <img src={aline} alt="Aline" className="w-40 md:hidden block" />
           </div>
 
           <div className="block">

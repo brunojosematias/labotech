@@ -29,7 +29,7 @@ export function ForgotPassword() {
               src={arthur}
               alt="Arthur esqueceu a senha"
               border="0"
-              className="w-11/12 pl-14 md:pl-0"
+              className="w-11/12 pl-14 md:w-10/12 md:pl-0"
             />
             <p className="font-medium pt-3 text-center mb-8 md:mb-0 md:pl-36">
               <span className="text-orange">Arthur</span> tomou um susto com sua
@@ -37,7 +37,7 @@ export function ForgotPassword() {
             </p>
           </div>
 
-          <NewPassword />
+          <Code />
         </div>
       </div>
     </div>

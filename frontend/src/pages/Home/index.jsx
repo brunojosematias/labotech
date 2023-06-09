@@ -163,12 +163,12 @@ export function Home() {
           </div>
         </section>
 
-        <section className="md:px-36 md:pt-56">
-          <div className="bg-aline-and-arthur bg-no-repeat bg-center bg-contain h-screen"></div>
+        <section className="pt-40 md:px-36 md:pt-56">
+          <div className="bg-aline-and-arthur2 bg-no-repeat bg-center bg-contain h-screen md:bg-aline-and-arthur"></div>
         </section>
 
-        <section className="md:px-36 md:pt-80 md:pb-[16.625rem]">
-          <div className="bg-emily-and-lucas bg-no-repeat bg-center bg-contain h-screen"></div>
+        <section className="pt-8 pb-36 md:px-36 md:pt-80 md:pb-[16.625rem]">
+          <div className="bg-emily-and-lucas2 bg-no-repeat bg-center bg-contain h-screen md:bg-emily-and-lucas"></div>
         </section>
 
         <ButtonStart />

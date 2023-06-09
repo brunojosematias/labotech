@@ -16,7 +16,9 @@ export default {
 
       backgroundImage: {
         "aline-and-arthur": "url('./assets/images/aline-and-arthur.svg')",
+        "aline-and-arthur2": "url('./assets/images/aline-and-arthur2.svg')",
         "emily-and-lucas": "url('./assets/images/emily-and-lucas.svg')",
+        "emily-and-lucas2": "url('./assets/images/emily-and-lucas2.svg')",
         aline: "url(./assets/images/aline.svg)",
         laboinstrutores: "url(./assets/images/laboinstrutores.svg)",
       },
