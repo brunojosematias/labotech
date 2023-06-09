@@ -15,14 +15,16 @@ class ExercisesRepository implements IExercisesRepository {
   async addExercise({
     name,
     type,
-    description,
+    time,
+    level,
     demonstration,
   }: IExercisesDTO): Promise<IExercisesDTO> {
     const addExercise = await prisma.exercises.create({
       data: {
         name,
         type,
-        description,
+        time,
+        level,
         demonstration,
       },
     });

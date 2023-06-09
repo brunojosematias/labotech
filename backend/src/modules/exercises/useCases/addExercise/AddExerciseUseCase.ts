@@ -4,11 +4,12 @@ import { IExercisesRepository } from "../../repositories/IExercisesRepository";
 class AddExerciseUseCase {
   constructor(private exercisesRepository: IExercisesRepository) {}
 
-  async execute({ name, type, description, demonstration }: IExercisesDTO) {
+  async execute({ name, type, time, level, demonstration }: IExercisesDTO) {
     const newExercise = await this.exercisesRepository.addExercise({
       name,
       type,
-      description,
+      time,
+      level,
       demonstration,
     });
 

@@ -61,7 +61,8 @@ model Exercises {
   id            String   @id @default(uuid())
   name          String
   type          String
-  description   String
+  time          Int
+  level         Int
   demonstration String
   created_at    DateTime @default(now())
 

@@ -2,7 +2,8 @@ interface IExercisesDTO {
   id?: string;
   name: string;
   type: string;
-  description: string;
+  time: number;
+  level: number;
   demonstration: string;
   created_at?: Date;
 }

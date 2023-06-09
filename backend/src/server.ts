@@ -11,8 +11,17 @@ app.use(
   })
 );
 
-const testePath = path.join(__dirname, "../tmp/avatar");
-app.use(express.static(testePath));
+// const avatarPath = path.join(__dirname, "../tmp/avatar");
+
+// app.use(express.static(avatarPath));
+
+const avatarPath = path.join(__dirname, "../tmp/avatar");
+const neckNeckOne = path.join(__dirname, "../exercises/pescoco-nuca/1-2");
+const neckNeckTwo = path.join(__dirname, "../exercises/pescoco-nuca/3-4");
+
+app.use("/avatar", express.static(avatarPath));
+app.use("/exercises/neck-neck-one", express.static(neckNeckOne));
+app.use("/exercises/neck-neck-two", express.static(neckNeckTwo));
 
 app.use(express.json());
 
