@@ -10,15 +10,19 @@ class CreateAnamnesisFormUseCase {
     userId: string,
     {
       gender,
+      age,
       weight,
       height,
-      physicalActivity,
-      pains,
       profession,
-      smoker,
-      healthProblem,
-      sedentary,
-      painLevel,
+      sittingOrStanding,
+      jointProblems,
+      healthProblems,
+      napeNeck,
+      upperBack,
+      lowerBack,
+      legs,
+      knees,
+      feetAndAnkles,
     }: IAnamnesisFormDTO
   ): Promise<IAnamnesisFormDTO> {
     const userRepository = new UsersRepository();
@@ -32,15 +36,19 @@ class CreateAnamnesisFormUseCase {
       userId,
       {
         gender,
+        age,
         weight,
         height,
-        physicalActivity,
-        pains,
         profession,
-        smoker,
-        healthProblem,
-        sedentary,
-        painLevel,
+        sittingOrStanding,
+        jointProblems,
+        healthProblems,
+        napeNeck,
+        upperBack,
+        lowerBack,
+        legs,
+        knees,
+        feetAndAnkles,
       }
     );
 

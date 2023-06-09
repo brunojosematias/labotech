@@ -10,15 +10,19 @@ class UpdateAnamnesisFormUseCase {
     id: string,
     {
       gender,
+      age,
       weight,
       height,
-      physicalActivity,
-      pains,
       profession,
-      smoker,
-      healthProblem,
-      sedentary,
-      painLevel,
+      sittingOrStanding,
+      jointProblems,
+      healthProblems,
+      napeNeck,
+      upperBack,
+      lowerBack,
+      legs,
+      knees,
+      feetAndAnkles,
     }: IAnamnesisFormDTO
   ): Promise<IAnamnesisFormDTO> {
     // const anamneseFormExists = await this.anamnesisFormRepository.findById(id);
@@ -30,15 +34,19 @@ class UpdateAnamnesisFormUseCase {
 
     const updateForm = await this.anamnesisFormRepository.update(id, {
       gender,
+      age,
       weight,
       height,
-      physicalActivity,
-      pains,
       profession,
-      smoker,
-      healthProblem,
-      sedentary,
-      painLevel,
+      sittingOrStanding,
+      jointProblems,
+      healthProblems,
+      napeNeck,
+      upperBack,
+      lowerBack,
+      legs,
+      knees,
+      feetAndAnkles,
     });
     return updateForm;
   }

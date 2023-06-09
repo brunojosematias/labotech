@@ -5,7 +5,7 @@ CREATE TABLE "users" (
     "surname" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "avatar" TEXT NOT NULL,
+    "avatar" TEXT,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );

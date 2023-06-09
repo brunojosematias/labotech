@@ -6,9 +6,10 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 class AnamnesisFormRepository implements IAnamnesisFormRepository {
-  findById(id: string): Promise<IAnamnesisFormDTO> {
-    throw new Error("Method not implemented.");
-  }
+  // findById(id: string): Promise<IAnamnesisFormDTO> {
+  //   throw new Error("Method not implemented.");
+  // }
+
   async findAll(): Promise<IAnamnesisFormDTO[]> {
     const all = await prisma.anamnesisForm.findMany();
 
@@ -39,29 +40,37 @@ class AnamnesisFormRepository implements IAnamnesisFormRepository {
     userId: string,
     {
       gender,
+      age,
       weight,
       height,
-      physicalActivity,
-      pains,
       profession,
-      smoker,
-      healthProblem,
-      sedentary,
-      painLevel,
+      sittingOrStanding,
+      jointProblems,
+      healthProblems,
+      napeNeck,
+      upperBack,
+      lowerBack,
+      legs,
+      knees,
+      feetAndAnkles,
     }
   ): Promise<IAnamnesisFormDTO> {
     const createAnamneisForm = await prisma.anamnesisForm.create({
       data: {
         gender,
+        age,
         weight,
         height,
-        physicalActivity,
-        pains,
         profession,
-        smoker,
-        healthProblem,
-        sedentary,
-        painLevel,
+        sittingOrStanding,
+        jointProblems,
+        healthProblems,
+        napeNeck,
+        upperBack,
+        lowerBack,
+        legs,
+        knees,
+        feetAndAnkles,
         userId,
       },
     });
@@ -73,15 +82,19 @@ class AnamnesisFormRepository implements IAnamnesisFormRepository {
     id: string,
     {
       gender,
+      age,
       weight,
       height,
-      physicalActivity,
-      pains,
       profession,
-      smoker,
-      healthProblem,
-      sedentary,
-      painLevel,
+      sittingOrStanding,
+      jointProblems,
+      healthProblems,
+      napeNeck,
+      upperBack,
+      lowerBack,
+      legs,
+      knees,
+      feetAndAnkles,
     }: IAnamnesisFormDTO
   ): Promise<IAnamnesisFormDTO> {
     const updateAnamnesisForm = await prisma.anamnesisForm.update({
@@ -90,15 +103,19 @@ class AnamnesisFormRepository implements IAnamnesisFormRepository {
       },
       data: {
         gender,
+        age,
         weight,
         height,
-        physicalActivity,
-        pains,
         profession,
-        smoker,
-        healthProblem,
-        sedentary,
-        painLevel,
+        sittingOrStanding,
+        jointProblems,
+        healthProblems,
+        napeNeck,
+        upperBack,
+        lowerBack,
+        legs,
+        knees,
+        feetAndAnkles,
       },
     });
 

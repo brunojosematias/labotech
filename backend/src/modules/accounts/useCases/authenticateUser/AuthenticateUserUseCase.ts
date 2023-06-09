@@ -3,6 +3,9 @@ import { sign } from "jsonwebtoken";
 
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { VerifyEmailAndPassword } from "../errors";
+import { GenerateRefreshToken } from "../../provider/GenerateRefreshToken";
+import { RefreshTokenRepository } from "../../repositories/implementations/RefreshTokenRepository";
+import { GenerateTokenProvider } from "../../provider/GenerateTokenProvider";
 
 interface IRequest {
   email: string;
@@ -15,6 +18,7 @@ interface IResponse {
     email: string;
   };
   token: string;
+  refreshToken: any;
 }
 
 class AuthenticateUserUseCase {
@@ -35,11 +39,22 @@ class AuthenticateUserUseCase {
       throw new VerifyEmailAndPassword();
     }
 
-    // Gerar o token
-    const token = sign({}, "d64a9d7049d31f6d43e12fb73617070e", {
-      subject: user.id,
-      expiresIn: "1d",
-    });
+    // // Gerar o token
+    // const token = sign({}, "d64a9d7049d31f6d43e12fb73617070e", {
+    //   subject: user.id,
+    //   expiresIn: "1d",
+    // });
+    const generateRefreshTokenProvider = new GenerateTokenProvider();
+    const token = await generateRefreshTokenProvider.execute(user.id);
+
+    const refreshTokenRepository = new RefreshTokenRepository();
+
+    await refreshTokenRepository.delete(user.id);
+
+    const generateRefreshToken = new GenerateRefreshToken(
+      refreshTokenRepository
+    );
+    const refreshToken = await generateRefreshToken.execute(user.id);
 
     const tokenReturn: IResponse = {
       user: {
@@ -47,6 +62,7 @@ class AuthenticateUserUseCase {
         email: user.email,
       },
       token,
+      refreshToken,
     };
 
     return tokenReturn;

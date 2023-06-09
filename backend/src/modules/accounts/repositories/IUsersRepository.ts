@@ -6,6 +6,7 @@ interface IUsersRepository {
   findByEmail(email: string): Promise<IUserDTO>;
   create(data: IUserDTO): Promise<IUserDTO>;
   update(id: string, data: IUserDTO): Promise<IUserDTO>;
+  updateAvatar(id: string, avatar: string): Promise<void>;
   delete(id: string): Promise<void>;
 }
 
