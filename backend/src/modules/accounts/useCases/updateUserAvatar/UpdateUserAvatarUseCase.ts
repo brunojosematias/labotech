@@ -18,7 +18,7 @@ class UpdateUserAvatarUseCase {
     }
     user.avatar = avatar_file;
 
-    await this.usersRepository.update(user_id, user);
+    await this.usersRepository.updateAvatar(user_id, user.avatar);
   }
 }
 

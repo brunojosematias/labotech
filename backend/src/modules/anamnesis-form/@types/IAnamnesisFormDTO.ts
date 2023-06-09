@@ -1,14 +1,20 @@
 interface IAnamnesisFormDTO {
+  id?: string;
   gender: string;
+  age: number;
   weight: number;
   height: number;
-  physicalActivity: boolean;
-  pains: string;
   profession: string;
-  smoker: boolean;
-  healthProblem: boolean;
-  sedentary: string;
-  painLevel: string;
+  sittingOrStanding: string;
+  jointProblems: string;
+  healthProblems: string;
+  napeNeck: number;
+  upperBack: number;
+  lowerBack: number;
+  legs: number;
+  knees: number;
+  feetAndAnkles: number;
+  created_at?: Date;
 }
 
 export { IAnamnesisFormDTO };

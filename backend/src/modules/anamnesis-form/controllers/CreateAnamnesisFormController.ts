@@ -11,15 +11,19 @@ class CreateAnamnesisFormController {
 
     const {
       gender,
+      age,
       weight,
       height,
-      physicalActivity,
-      pains,
       profession,
-      smoker,
-      healthProblem,
-      sedentary,
-      painLevel,
+      sittingOrStanding,
+      jointProblems,
+      healthProblems,
+      napeNeck,
+      upperBack,
+      lowerBack,
+      legs,
+      knees,
+      feetAndAnkles,
     } = request.body;
 
     try {
@@ -27,15 +31,19 @@ class CreateAnamnesisFormController {
         userId,
         {
           gender,
+          age,
           weight,
           height,
-          physicalActivity,
-          pains,
           profession,
-          smoker,
-          healthProblem,
-          sedentary,
-          painLevel,
+          sittingOrStanding,
+          jointProblems,
+          healthProblems,
+          napeNeck,
+          upperBack,
+          lowerBack,
+          legs,
+          knees,
+          feetAndAnkles,
         }
       );
 

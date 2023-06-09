@@ -46,6 +46,12 @@ class ValidateEmail extends Error {
   }
 }
 
+class ValidateRefreshToken extends Error {
+  constructor() {
+    super("Refresh token invalid!");
+  }
+}
+
 // class VerifyToken extends Error {
 //   constructor() {
 //     super("verify token");
@@ -67,6 +73,7 @@ export {
   PasswordExists,
   VerifyEmailAndPassword,
   ValidateEmail,
+  ValidateRefreshToken,
   // VerifyToken,
   // ValidateToken,
 };

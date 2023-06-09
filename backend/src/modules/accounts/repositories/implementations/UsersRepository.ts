@@ -7,7 +7,6 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// Reponsável por se concectar ao a tabela de usuários no banco de dados
 class UsersRepository implements IUsersRepository {
   async findAll(): Promise<IUserDTO[]> {
     const all = await prisma.user.findMany();
@@ -54,6 +53,7 @@ class UsersRepository implements IUsersRepository {
 
     return newUser;
   }
+
   async update(
     id: string,
     { name, surname, email, password, avatar }: IUserDTO
@@ -74,6 +74,18 @@ class UsersRepository implements IUsersRepository {
 
     return updateUser;
   }
+
+  async updateAvatar(id: string, avatar: string): Promise<void> {
+    const updateUser = await prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        avatar,
+      },
+    });
+  }
+
   async delete(id: string): Promise<void> {
     await prisma.user.delete({
       where: {
