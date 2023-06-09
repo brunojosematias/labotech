@@ -9,7 +9,7 @@ import { Button } from "../../components/Button";
 
 export function Login() {
   return (
-    <div className="bg-background pb-7 md:pb-0 md:px-7">
+    <div className="bg-background md:px-7">
       <div className="container mx-auto h-screen">
         <div className="flex items-center pt-6 pl-6">
           <a href="" className="mr-3.5 w-10">
@@ -39,7 +39,7 @@ export function Login() {
           </div>
 
           <div>
-            <h2 className="text-orange font-medium text-3xl mb-16 text-right pr-10 md:text-center md:pr-60">
+            <h2 className="text-orange font-medium text-3xl mb-6 text-right pr-10 md:text-center md:pr-60">
               Login
             </h2>
             <div>
