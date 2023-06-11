@@ -31,9 +31,10 @@ interface IExercises {
 
 interface ITimer {
   start?: boolean;
+  onChangeImage?: (value: number) => void;
 }
 
-export function Timer({ start }: ITimer) {
+export function Timer({ start, onChangeImage }: ITimer) {
   const auth = useContext(AuthContext);
 
   const [amountOfTime, setAmountOfTime] = useState<number>(0);
@@ -42,6 +43,8 @@ export function Timer({ start }: ITimer) {
   const [exercises, setExercises] = useState<IExercises[]>([]);
   const [anamsesisFormDatas, setAnamsesisFormDatas] =
     useState<IAnamnesisFormValues>();
+
+  console.log(amountOfTime);
 
   useEffect(() => {
     const fetchExercises = async () => {
@@ -68,7 +71,7 @@ export function Timer({ start }: ITimer) {
 
   useEffect(() => {
     const amountOfTime = exercises
-      .filter((element) => element.type === "nuca_pescoco")
+      .filter((element) => element.type === "nuca_pescoco" || "costas_superior")
       .reduce((totalTime, element) => {
         const level = Number(anamsesisFormDatas?.napeNeck);
 

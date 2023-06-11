@@ -16,6 +16,8 @@ import { api } from "../../hooks/useApi";
 export function AnamnesisForm() {
   const auth = useContext(AuthContext);
 
+  console.log(auth.user?.id);
+
   const [steps, setSteps] = useState<number>(1);
 
   const [gender, setGender] = useState<string>("");

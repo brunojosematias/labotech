@@ -40,7 +40,7 @@ export const useAPI = () => ({
 
     return {
       user: {
-        id: response.data.id,
+        id: datas.data.id,
         email: response.data.user.email,
         password: response.data.user.password,
         name: datas.data.name,

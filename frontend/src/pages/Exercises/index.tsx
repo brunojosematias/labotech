@@ -43,10 +43,10 @@ export function Exercises() {
     useState<IFirstFormValues>();
 
   useEffect(() => {
-    const fetchExercises = async () => {
+    const fetchExercisesAndAnamnesisForm = async () => {
       try {
-        const responseExercises = await api.get("/exercises");
-        const responseAnamnesisForm = await api.get(
+        const exercisesPromise = api.get("/exercises");
+        const anamnesisFormPromise = api.get(
           `/users/${auth.user?.id}/anamnesis`,
           {
             headers: {
@@ -55,6 +55,11 @@ export function Exercises() {
           }
         );
 
+        const [responseExercises, responseAnamnesisForm] = await Promise.all([
+          exercisesPromise,
+          anamnesisFormPromise,
+        ]);
+
         setExercises(responseExercises.data);
         setAnamsesisFormDatas(responseAnamnesisForm.data);
       } catch (error) {
@@ -62,7 +67,7 @@ export function Exercises() {
       }
     };
 
-    fetchExercises();
+    fetchExercisesAndAnamnesisForm();
   }, []);
 
   return (
@@ -132,7 +137,8 @@ export function Exercises() {
                         const level = Number(anamsesisFormDatas?.napeNeck);
 
                         if (
-                          item.type === "nuca_pescoco" &&
+                          (item.type === "nuca_pescoco" ||
+                            item.type === "costas_superior") &&
                           Math.floor((item.level - 1) / 2) ===
                             Math.floor((level - 1) / 2) &&
                           level !== 0
