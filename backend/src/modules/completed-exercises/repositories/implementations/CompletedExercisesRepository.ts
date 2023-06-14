@@ -18,13 +18,14 @@ class CompletedExercisesRepository implements ICompletedExercisesRepository {
 
   async addExercise(
     userId: string,
-    { exercise, status, timer }: ICompletedExercisesDTO
+    { exercise, status, time, level }: ICompletedExercisesDTO
   ): Promise<ICompletedExercisesDTO> {
     const completedExercises = await prisma.completedExercises.create({
       data: {
         exercise,
         status,
-        timer,
+        time,
+        level,
         userId,
       },
     });

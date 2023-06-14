@@ -73,7 +73,8 @@ model CompletedExercises {
   id         String   @id @default(uuid())
   exercise   String
   status     String
-  timer      Int
+  level      Int
+  time       Int
   created_at DateTime @default(now())
   user       User     @relation(fields: [userId], references: [id])
   userId     String

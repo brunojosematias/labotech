@@ -2,7 +2,8 @@ interface ICompletedExercisesDTO {
   id?: string;
   exercise: string;
   status: string;
-  timer: number;
+  level: number;
+  time: number;
   userId?: string;
   created_at?: Date;
 }

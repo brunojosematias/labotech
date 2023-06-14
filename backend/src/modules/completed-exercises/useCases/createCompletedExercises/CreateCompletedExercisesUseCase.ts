@@ -8,13 +8,14 @@ class CreateCompletedExercisesUseCase {
 
   async execute(
     userId: string,
-    { exercise, status, timer }: ICompletedExercisesDTO
+    { exercise, status, level, time }: ICompletedExercisesDTO
   ): Promise<ICompletedExercisesDTO> {
     const completedExercises =
       await this.completedExercisesRepository.addExercise(userId, {
         exercise,
         status,
-        timer,
+        level,
+        time,
       });
 
     return completedExercises;

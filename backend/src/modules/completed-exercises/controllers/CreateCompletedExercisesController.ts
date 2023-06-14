@@ -9,13 +9,14 @@ class CreateCompletedExercisesController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { userId } = request.params;
-    const { exercise, status, timer } = request.body;
+    const { exercise, status, level, time } = request.body;
 
     const createCompleteddExercise =
       await this.createCompletedExercisesUseCase.execute(userId, {
         exercise,
         status,
-        timer,
+        level,
+        time,
       });
 
     return response.json(createCompleteddExercise);
