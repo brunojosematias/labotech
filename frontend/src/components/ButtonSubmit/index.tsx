@@ -1,16 +1,19 @@
-import { ReactNode } from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { ButtonHTMLAttributes } from "react";
 
-interface IButtonProps {
-  children: ReactNode;
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  asChild?: boolean;
 }
 
-export function ButtonSubmit({ children }: IButtonProps) {
+export function ButtonSubmit({ asChild, ...props }: IButtonProps) {
+  const Component = asChild ? Slot : "button";
+
   return (
-    <button
-      type="submit"
-      className="w-full text-orange text-center bg-background font-medium border-2 border-orange rounded-xl py-2 hover:bg-orange hover:text-black transition-all"
+    <Component
+      {...props}
+      className="w-full text-orange text-center bg-background font-medium border-2 border-orange rounded-xl py-2 px-2 hover:bg-orange hover:text-black transition-all"
     >
-      {children}
-    </button>
+      {props.children}
+    </Component>
   );
 }

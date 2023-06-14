@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/Button";
+import { ButtonSubmit } from "../../../components/ButtonSubmit";
 
 interface IStepInitial {
   stepInitial: (value: number) => void;
 }
-
-// import { ButtonSubmit } from "../../../components/ButtonSubmit";
 
 export function ThirdForm({ stepInitial }: IStepInitial) {
   const navigate = useNavigate();
@@ -19,13 +18,12 @@ export function ThirdForm({ stepInitial }: IStepInitial) {
   }
 
   return (
-    <div className="bg-background h-[17.2rem]">
+    <div className="bg-background h-[20rem]">
       <div className="container mx-auto text-center px-96">
         <div className="w-96 mb-5">
-          {/* <ButtonSubmit>Finalizar o cadastro e entrar no LaboTech</ButtonSubmit> */}
-          <Button onClick={handleRedirect}>
+          <ButtonSubmit onClick={handleRedirect}>
             Finalizar o cadastro e entrar no LaboTech
-          </Button>
+          </ButtonSubmit>
         </div>
         <button
           onClick={handleStepInitial}

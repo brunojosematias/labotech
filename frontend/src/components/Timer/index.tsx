@@ -44,8 +44,6 @@ export function Timer({ start, onChangeImage }: ITimer) {
   const [anamsesisFormDatas, setAnamsesisFormDatas] =
     useState<IAnamnesisFormValues>();
 
-  console.log(amountOfTime);
-
   useEffect(() => {
     const fetchExercises = async () => {
       try {
@@ -70,20 +68,52 @@ export function Timer({ start, onChangeImage }: ITimer) {
   }, []);
 
   useEffect(() => {
-    const amountOfTime = exercises
-      .filter((element) => element.type === "nuca_pescoco" || "costas_superior")
-      .reduce((totalTime, element) => {
-        const level = Number(anamsesisFormDatas?.napeNeck);
+    const targetExerciseTypes = [
+      "nuca_pescoco",
+      "costas_superior",
+      "costas_inferior",
+      "pernas",
+      "joelhos",
+      "pes_tornozelos",
+    ];
 
-        if (
-          Math.floor((element.level - 1) / 2) === Math.floor((level - 1) / 2) &&
-          level !== 0
-        ) {
-          return totalTime + element.time;
-        }
+    const amountOfTime = exercises.reduce((totalTime, element) => {
+      let level = 0;
 
-        return totalTime;
-      }, 0);
+      switch (element.type) {
+        case "nuca_pescoco":
+          level = Number(anamsesisFormDatas?.napeNeck);
+          break;
+        case "costas_superior":
+          level = Number(anamsesisFormDatas?.upperBack);
+          break;
+        case "costas_inferior":
+          level = Number(anamsesisFormDatas?.lowerBack);
+          break;
+        case "pernas":
+          level = Number(anamsesisFormDatas?.legs);
+          break;
+        case "joelhos":
+          level = Number(anamsesisFormDatas?.knees);
+          break;
+        case "pes_tornozelos":
+          level = Number(anamsesisFormDatas?.feetAndAnkles);
+          break;
+        default:
+          level = 0;
+          break;
+      }
+
+      if (
+        targetExerciseTypes.includes(element.type) &&
+        Math.floor((element.level - 1) / 2) === Math.floor((level - 1) / 2) &&
+        level !== 0
+      ) {
+        return totalTime + element.time;
+      }
+
+      return totalTime;
+    }, 0);
 
     setAmountOfTime(amountOfTime);
   }, [exercises, anamsesisFormDatas]);
@@ -127,7 +157,7 @@ export function Timer({ start, onChangeImage }: ITimer) {
 
   return (
     <div>
-      <div className="text-6xl text-[#E1E1E6] flex items-center justify-center gap-3">
+      <div className="text-6xl text-[#E1E1E6] flex items-center justify-center gap-3 font-mono">
         {minutes.split("").map((digit, index) => (
           <span
             key={`minute-${index}`}

@@ -1,11 +1,23 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { z } from "zod";
 
 import laboinstrutores from "../../assets/images/labo-instrutores.svg";
 import logo from "../../assets/logo.svg";
 import arrow from "../../assets/icons/arrow.svg";
 import { Button } from "../../components/Button";
 import { api } from "../../hooks/useApi";
+
+const schema = z.object({
+  name: z.string().nonempty("O nome é obrigatório"),
+  surname: z.string().nonempty("O sobrenome é obrigatório"),
+  email: z
+    .string()
+    .email("Insira um email válido")
+    .nonempty("O email é obrigatório"),
+  password: z.string().nonempty("A senha é obrigatória"),
+  confirmPassword: z.string().nonempty("A confirmação de senha é obrigatória"),
+});
 
 export function Register() {
   const navigate = useNavigate();
@@ -15,50 +27,93 @@ export function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   async function handleRegister(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    await api
-      .post("/users", {
+    try {
+      const values = {
         name,
         surname,
         email,
         password,
-      })
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+        confirmPassword,
+      };
 
-    navigate("/entrar");
+      schema.parse(values);
+
+      await api.post("/users", values);
+      navigate("/entrar");
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const validationErrors: Record<string, string> = {};
+
+        error.errors.forEach((err) => {
+          if (err.path) {
+            validationErrors[err.path[0]] = err.message;
+          }
+        });
+
+        setErrors(validationErrors);
+      }
+    }
   }
 
   function handleName(event: ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      name: "",
+    }));
   }
 
   function handleSurname(event: ChangeEvent<HTMLInputElement>) {
     setSurname(event.target.value);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      surname: "",
+    }));
   }
 
   function handleEmail(event: ChangeEvent<HTMLInputElement>) {
-    setEmail(event.target.value);
+    const value = event.target.value;
+    setEmail(value);
+    validateEmail(value);
+  }
+
+  function validateEmail(email: string) {
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    const isValid = emailRegex.test(email);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      email: isValid ? "" : "Insira um email válido",
+    }));
   }
 
   function handlePassword(event: ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      password: "",
+    }));
   }
 
   function handleConfirmPassword(event: ChangeEvent<HTMLInputElement>) {
     setConfirmPassword(event.target.value);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      confirmPassword: "",
+    }));
   }
 
   return (
     <>
       <div className="bg-background h-screen px-7">
         <div className="flex items-center pt-20 pl-6 mb-10 container mx-auto">
-          <a href="" className="w-10 mr-3.5">
+          <Link to="/entrar" className="w-10 mr-3.5">
             <img src={arrow} alt="Arrow" className="border-0" />
-          </a>
+          </Link>
           <img src={logo} alt="Logo" className="border-0" />
         </div>
 
@@ -68,73 +123,106 @@ export function Register() {
               <h2 className="text-orange font-medium text-3xl text-center pt-8 mb-16">
                 Registrar
               </h2>
-              <form
-                className="font-extralight text-white"
-                method="POST"
-                onSubmit={handleRegister}
-              >
-                <div className=" flex font-extralight text-white gap-6 ">
-                  <input
-                    type="nome"
-                    name="nome"
-                    placeholder="Nome"
-                    id="nome"
-                    autoComplete="nome"
-                    required
-                    value={name}
-                    onChange={handleName}
-                    className="bg-background border rounded-3xl mb-7 py-3 pl-7 w-48 focus:outline-none focus:border-orange transition-all"
-                  />
+              <form onSubmit={handleRegister} noValidate>
+                <div className="mb-7 flex text-white font-medium gap-6 ">
+                  <div>
+                    <input
+                      type="nome"
+                      name="nome"
+                      placeholder="Nome*"
+                      id="nome"
+                      autoComplete="nome"
+                      required
+                      value={name}
+                      onChange={handleName}
+                      className={`bg-background border rounded-3xl py-3 pl-7 w-48 focus:outline-none focus:border-orange transition-all ${
+                        errors.name ? "border-red-500" : ""
+                      }`}
+                    />
+                    {errors.name && (
+                      <p className="text-red-500">{errors.name}</p>
+                    )}
+                  </div>
 
-                  <input
-                    type="sobrenome"
-                    name="sobrenome"
-                    placeholder="Sobrenome"
-                    id="sobrenome"
-                    autoComplete="sobrenome"
-                    required
-                    value={surname}
-                    onChange={handleSurname}
-                    className="bg-background border rounded-3xl mb-7 py-3 pl-8 w-48  focus:outline-none focus:border-orange transition-all"
-                  />
+                  <div>
+                    <input
+                      type="sobrenome"
+                      name="sobrenome"
+                      placeholder="Sobrenome*"
+                      id="sobrenome"
+                      autoComplete="sobrenome"
+                      required
+                      value={surname}
+                      onChange={handleSurname}
+                      className={`bg-background border rounded-3xl py-3 pl-8 w-48 focus:outline-none focus:border-orange transition-all ${
+                        errors.surname ? "border-red-500" : ""
+                      }`}
+                    />
+                    {errors.surname && (
+                      <p className="text-red-500">{errors.surname}</p>
+                    )}
+                  </div>
                 </div>
 
-                <div className="flex  flex-col font-extralight text-white  ">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="E-mail"
-                    id="email"
-                    autoComplete="email"
-                    required
-                    value={email}
-                    onChange={handleEmail}
-                    className="bg-background border rounded-3xl mb-4 py-3 pl-8 w-6/11 focus:outline-none focus:border-orange transition-all"
-                  />
+                <div className="flex flex-col font-medium text-white  ">
+                  <div className="mb-4">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="E-mail*"
+                      id="email"
+                      autoComplete="email"
+                      required
+                      value={email}
+                      onChange={handleEmail}
+                      className={`bg-background border rounded-3xl py-3 pl-8 w-6/11 focus:outline-none focus:border-orange transition-all w-full ${
+                        errors.email
+                          ? "border-red-500 focus:border-red-500"
+                          : ""
+                      }`}
+                    />
+                    {errors.email && (
+                      <p className="text-red-500">{errors.email}</p>
+                    )}
+                  </div>
 
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Senha"
-                    id="password"
-                    autoComplete="current-password"
-                    required
-                    value={password}
-                    onChange={handlePassword}
-                    className="bg-background border rounded-3xl mb-4 py-3 pl-8 pr-2 w-6/11 focus:outline-none focus:border-orange transition-all"
-                  />
+                  <div className="mb-4 ">
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Senha*"
+                      id="password"
+                      autoComplete="current-password"
+                      required
+                      value={password}
+                      onChange={handlePassword}
+                      className={`bg-background border rounded-3xl  py-3 pl-8 pr-2 w-6/11 focus:outline-none focus:border-orange transition-all w-full ${
+                        errors.password ? "border-red-500" : ""
+                      }`}
+                    />
+                    {errors.password && (
+                      <p className="text-red-500">{errors.password}</p>
+                    )}
+                  </div>
 
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Confirmar senha"
-                    id="password"
-                    autoComplete="current-password"
-                    required
-                    value={confirmPassword}
-                    onChange={handleConfirmPassword}
-                    className="bg-background border rounded-3xl mb-4 py-3 pl-8 pr-2 w-6/11 focus:outline-none focus:border-orange transition-all"
-                  />
+                  <div className="mb-4">
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Confirmar senha"
+                      id="password"
+                      autoComplete="current-password"
+                      required
+                      value={confirmPassword}
+                      onChange={handleConfirmPassword}
+                      className={`bg-background border rounded-3xl py-3 pl-8 pr-2 w-6/11 focus:outline-none focus:border-orange transition-all w-full ${
+                        errors.confirmPassword ? " border-red-500" : ""
+                      }`}
+                    />
+                    {errors.confirmPassword && (
+                      <p className="text-red-500">{errors.confirmPassword}</p>
+                    )}
+                  </div>
 
                   <div className="flex flex-col leading-7 ml-5">
                     <div className="flex text-white font-extralight items-center outline-none">
@@ -200,3 +288,5 @@ export function Register() {
     </>
   );
 }
+
+export default Register;

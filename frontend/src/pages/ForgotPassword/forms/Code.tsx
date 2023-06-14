@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../../../components/Button";
 
 export function Code() {
@@ -44,13 +45,13 @@ export function Code() {
         <p className="text-white">
           Ainda com problemas para recuperar sua conta?
         </p>
-        <a
-          href="#"
+        <Link
+          to="#"
           className="text-orange underline ml-1 hover:text-white"
           id="cadastrar"
         >
           Entre em contato com o suporte aqui.
-        </a>
+        </Link>
       </div>
     </div>
   );

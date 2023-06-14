@@ -1,19 +1,18 @@
-import React, { isValidElement, useRef, useState } from "react";
+import { useState } from "react";
 
 import { Navbar } from "../../components/Navbar";
 import { ButtonStart } from "../../components/ButtonStart";
 
 import logo from "../../assets/logo.svg";
-import arthur2 from "../../assets/images/arthur-2.svg";
+import arthur from "../../assets/images/arthur-2.svg";
 import alinecelular from "../../assets/images/aline-fone.svg";
 import emily from "../../assets/images/emily-exercise.svg";
-import person3 from "../../assets/images/person-3.svg";
 import comment1 from "../../assets/images/comment-1.svg";
 import comment2 from "../../assets/images/comment-2.svg";
 import laboInstrutores from "../../assets/images/labo-instrutores.svg";
 
 export function Home() {
-  const [scroll, setScroll] = useState<number>(0);
+  const [scroll, setScroll] = useState(0);
 
   function handleScroll() {
     setScroll(window.scrollY);
@@ -30,7 +29,7 @@ export function Home() {
 
         <section className="px-10 pt-32 md:px-44 md:pt-48" id="home">
           <div className="flex-col items-center gap-[9.125rem] md:flex md:flex-row">
-            <img src={arthur2} alt="Arthur foto" />
+            <img src={arthur} alt="Arthur foto" />
 
             <div className="text-center text-white mt-6">
               <h1 className="text-3xl mb-12 md:mb-[8.1875rem]">
@@ -92,8 +91,12 @@ export function Home() {
           <h2 className="text-orange text-5xl text-center mb-[4.8125rem]">
             Exercícios personalizados
           </h2>
-          <div className="flex-col items-center gap-[9.125rem] md:flex md:flex-row">
-            <img src={emily} alt="Mulher se alongando" />
+          <div className="flex-col items-center gap-72 md:flex md:flex-row">
+            <img
+              src={emily}
+              alt="Mulher se alongando"
+              className="w-80 ml-20 md:ml-28 md:w-4/12"
+            />
 
             <div className="text-center text-white text-lg mt-[2.0625rem] flex flex-col gap-10 md:gap-16 md:mt-0">
               <p>
@@ -160,12 +163,12 @@ export function Home() {
           </div>
         </section>
 
-        <section className="md:px-36 md:pt-56">
-          <div className="bg-aline-and-arthur bg-no-repeat bg-center bg-contain  h-screen"></div>
+        <section className="pt-40 md:px-36 md:pt-56">
+          <div className="bg-aline-and-arthur2 bg-no-repeat bg-center bg-contain h-screen md:bg-aline-and-arthur"></div>
         </section>
 
-        <section className="md:px-36 md:pt-80 md:pb-[16.625rem]">
-          <div className="bg-emily-and-lucas bg-no-repeat bg-center bg-contain  h-screen"></div>
+        <section className="pt-8 pb-36 md:px-36 md:pt-80 md:pb-[16.625rem]">
+          <div className="bg-emily-and-lucas2 bg-no-repeat bg-center bg-contain h-screen md:bg-emily-and-lucas"></div>
         </section>
 
         <ButtonStart />

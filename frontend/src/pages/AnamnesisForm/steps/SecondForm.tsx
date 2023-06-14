@@ -213,13 +213,6 @@ export function SecondForm({
   onSecondFormFunctions,
   onSecondFormValues,
 }: ISecondFormDTO) {
-  // const [isCheckedNapeNeck, setIsCheckedNapeNeck] = useState<string>("");
-  // const [isCheckedBack, setIsCheckedBack] = useState<string>("");
-  // const [isCheckedLegs, setIsCheckedLegs] = useState<string>("");
-  // const [isCheckedKnees, setIsCheckedKnees] = useState<string>("");
-  // const [isCheckedFeetAndAnkles, setIsCheckedFeetAndAnkles] =
-  //   useState<string>("");
-
   function handleIsCheckedNapeNeck(event: ChangeEvent<HTMLInputElement>) {
     onSecondFormFunctions.setNapeNeck(event.target.value);
   }
@@ -249,7 +242,7 @@ export function SecondForm({
       <div className="container mx-auto flex flex-col gap-10">
         <div className="text-center">
           <p className="text-white font-bold mb-3">Nuca/Pescoço</p>
-          <div className="flex justify-between gap-11 items-center font-extralight text-white md:px-72">
+          <div className="flex justify-between gap-11 items-center font-medium text-white md:px-72">
             {napeNeck.map((item) => (
               <div key={item.level} className="text-center">
                 <div className="text-white items-center mt-2">
@@ -273,7 +266,7 @@ export function SecondForm({
 
         <div className="text-center">
           <p className="text-white font-bold mb-3">Costas ( superior )</p>
-          <div className="flex justify-between items-center gap-11 font-extralight text-white md:px-72">
+          <div className="flex justify-between items-center gap-11 font-medium text-white md:px-72">
             {upperBack.map((item) => (
               <div key={item.level} className="text-center">
                 <div className="text-white items-center mt-2">
@@ -298,7 +291,7 @@ export function SecondForm({
 
         <div className="text-center">
           <p className="text-white font-bold mb-3">Costas ( inferior )</p>
-          <div className="flex justify-between items-center gap-11 font-extralight text-white md:px-72">
+          <div className="flex justify-between items-center gap-11 font-medium text-white md:px-72">
             {lowerBack.map((item) => (
               <div key={item.level} className="text-center">
                 <div className="text-white items-center mt-2">
@@ -323,7 +316,7 @@ export function SecondForm({
 
         <div className="text-center">
           <p className="text-white font-bold mb-3">Pernas</p>
-          <div className="flex justify-between gap-11 items-center font-extralight text-white md:px-72">
+          <div className="flex justify-between gap-11 items-center font-medium text-white md:px-72">
             {legs.map((item) => (
               <div key={item.level} className="text-center">
                 <div className="text-white items-center mt-2">
@@ -346,7 +339,7 @@ export function SecondForm({
 
         <div className="text-center">
           <p className="text-white font-bold mb-3">Joelhos</p>
-          <div className="flex justify-between gap-11 items-center font-extralight text-white md:px-72">
+          <div className="flex justify-between gap-11 items-center font-medium text-white md:px-72">
             {knees.map((item) => (
               <div key={item.level} className="text-center">
                 <div className="text-white items-center mt-2">
@@ -369,7 +362,7 @@ export function SecondForm({
 
         <div className="text-center">
           <p className="text-white font-bold mb-3">Pés e Tornozelos</p>
-          <div className="flex justify-between gap-11 items-center font-extralight text-white md:px-72">
+          <div className="flex justify-between gap-11 items-center font-medium text-white md:px-72">
             {feetAndAnkles.map((item) => (
               <div key={item.level} className="text-center">
                 <div className="text-white items-center mt-2">

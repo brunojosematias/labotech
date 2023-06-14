@@ -1,20 +1,18 @@
-import React from "react";
-
 import arthur from "../../assets/images/arthur.svg";
 import logo from "../../assets/logo.svg";
 import arrow from "../../assets/icons/arrow.svg";
 
 import { Code } from "./forms/Code";
-import { NewPassword } from "./forms/NewPassword";
+import { Link } from "react-router-dom";
 
 export function ForgotPassword() {
   return (
     <div className="bg-background scroll-smooth md:px-7">
       <div className="container mx-auto h-screen">
         <div className="flex items-center pt-6 pl-6">
-          <a href="" className="w-10 mr-3.5">
+          <Link to="/entrar" className="w-10 mr-3.5">
             <img src={arrow} alt="Arrow" className="border-0" />
-          </a>
+          </Link>
           <img src={logo} alt="Logo" className="border-0" />
         </div>
 
@@ -28,7 +26,7 @@ export function ForgotPassword() {
             <img
               src={arthur}
               alt="Arthur esqueceu a senha"
-              className="w-11/12 pl-14 border-0 md:pl-0"
+              className="w-11/12 pl-14 border-0 md:w-10/12 md:pl-0"
             />
             <p className="font-medium pt-3 text-center mb-8 md:mb-0 md:pl-36">
               <span className="text-orange">Arthur</span> tomou um susto com sua
@@ -36,7 +34,7 @@ export function ForgotPassword() {
             </p>
           </div>
 
-          <NewPassword />
+          <Code />
         </div>
       </div>
     </div>

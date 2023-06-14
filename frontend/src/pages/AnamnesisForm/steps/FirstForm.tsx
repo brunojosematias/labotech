@@ -1,7 +1,4 @@
-import { ChangeEvent, FormEvent, useContext, useState } from "react";
-import { api } from "../../../hooks/useApi";
-import { AuthContext } from "../../../contexts/Auth/AuthContext";
-import { Button } from "../../../components/Button";
+import { ChangeEvent } from "react";
 
 interface IFirstFormFunctions {
   setGender: (gender: string) => void;
@@ -34,44 +31,6 @@ export function FirstForm({
   onFirstFormFunctions,
   onFirstFormValues,
 }: IFirstFormDTO) {
-  const auth = useContext(AuthContext);
-
-  // const [gender, setGender] = useState<string>("");
-  // const [age, setAge] = useState<string>("");
-  // const [height, setHeight] = useState<string>("");
-  // const [weight, setWeight] = useState<string>("");
-  // const [profession, setProfession] = useState<string>("");
-
-  // const [isCheckedSittingOrStanding, setSittingOrStanding] =
-  //   useState<string>("");
-  // const [isCheckedJointProblems, setIsCheckedJointProblems] =
-  //   useState<string>("");
-  // const [isCheckedHealthProblems, setIsCheckedHealthProblems] =
-  //   useState<string>("");
-
-  // async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-  //   event.preventDefault();
-
-  //   await api
-  //     .post(
-  //       `/users/${auth.user?.id}/anamnesis`,
-  //       {
-  //         gender,
-  //         age,
-  //         height,
-  //         weight,
-  //         profession,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${auth.user?.token}`,
-  //         },
-  //       }
-  //     )
-  //     .then((response) => console.log(response))
-  //     .catch((error) => console.log(error));
-  // }
-
   function handleGender(event: ChangeEvent<HTMLInputElement>) {
     onFirstFormFunctions.setGender(event.target.value);
   }
@@ -113,7 +72,7 @@ export function FirstForm({
   return (
     <div className="bg-background pb-7">
       <div>
-        <div className="flex flex-col font-extralight text-white md:px-72">
+        <div className="flex flex-col font-medium text-white md:px-72">
           <div className="mx-16 flex gap-8 mb-3">
             <input
               type="text"
@@ -171,7 +130,7 @@ export function FirstForm({
             className="bg-background border rounded-3xl mb-7 py-3 pl-8 focus:outline-none focus:border-orange transition-all"
           />
 
-          <div className="text-white font-extralight mb-10">
+          <div className="text-white font-medium mb-10">
             <p className="mb-4 ml-24">
               Você passa mais tempo em pé ou sentado?
             </p>

@@ -7,7 +7,7 @@ import arrow from "../../assets/icons/arrow.svg";
 
 import { Button } from "../../components/Button";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
-import { api } from "../../hooks/useApi";
+import { CircleNotch } from "@phosphor-icons/react";
 
 export function Login() {
   const auth = useContext(AuthContext);
@@ -15,6 +15,7 @@ export function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Estado para controlar o loading
 
   function handleEmail(event: ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
@@ -28,10 +29,11 @@ export function Login() {
     event.preventDefault();
 
     if (email && password) {
-      const isLogged = await auth.signin(email, password);
-      // const isLogged = await api.post("/sessions", { email, password });
+      setIsLoading(true);
 
-      console.log(isLogged);
+      const isLogged = await auth.signin(email, password);
+
+      setIsLoading(false);
 
       if (isLogged) {
         navigate("/ficha-anamnese");
@@ -43,9 +45,14 @@ export function Login() {
 
   return (
     <div className="bg-background h-screen pb-10 md:px-7">
+      {isLoading && (
+        <div className="fixed top-0 left-0 z-50 w-screen h-screen flex items-center justify-center bg-background">
+          <CircleNotch className="w-14 h-14 text-orange animate-spin" />
+        </div>
+      )}
       <div className="container mx-auto">
         <div className="flex items-center pt-6 pl-6">
-          <Link to="" className="mr-3.5 w-10">
+          <Link to="/" className="mr-3.5 w-10">
             <img src={arrow} alt="Arrow" className="border-0" />
           </Link>
           <img src={logo} alt="Logo" className="border-0" />
@@ -78,7 +85,8 @@ export function Login() {
             <div>
               <form
                 onSubmit={handleLogin}
-                className="flex flex-col font-extralight text-white px-9 md:pl-0 md:pr-60"
+                className="flex flex-col text-white font-medium px-9 md:pl-0 md:pr-60"
+                noValidate
               >
                 <input
                   type="email"
@@ -91,7 +99,6 @@ export function Login() {
                   onChange={handleEmail}
                   className="bg-background border rounded-3xl mb-7 py-3 pl-8 focus:outline-none focus:border-orange transition-all"
                 />
-
                 <input
                   type="password"
                   name="password"
@@ -102,24 +109,25 @@ export function Login() {
                   value={password}
                   onChange={handlePassword}
                   className="bg-background border rounded-3xl mb-4 py-3 pl-8 pr-2 focus:outline-none focus:border-orange transition-all"
-                />
-
+                />{" "}
+                // Esconder o loading
                 <div className="flex">
-                  <div className="text-white font-extralight flex items-center outline-none">
-                    <input
-                      type="checkbox"
-                      value="lsRememberMe"
-                      id="rememberMe"
-                      className="appearance-none h-4 w-4 border border-spacing-2 rounded-sm mr-2 focus:outline-none checked:bg-orange"
-                    />
-                    <label /*for="rememberMe"*/>Lembrar de mim</label>
-                  </div>
+                  {
+                    <div className="text-white font-extralight flex items-center outline-none">
+                      <input
+                        type="checkbox"
+                        value="lsRememberMe"
+                        id="rememberMe"
+                        className="appearance-none h-4 w-4 border border-spacing-2 rounded-sm mr-2 focus:outline-none checked:bg-orange"
+                      />
+                      <label /*for="rememberMe"*/>Lembrar de mim</label>
+                    </div>
+                  }
 
                   <div className="text-white underline font-bold ml-36 md:ml-24 hover:text-orange">
                     <a href="/recuperar-senha">Esqueceu a senha?</a>
                   </div>
                 </div>
-
                 <div className="mt-5 mb-8">
                   <Button>Entrar</Button>
                 </div>

@@ -1,5 +1,7 @@
 import { FormEvent, useContext, useState } from "react";
 
+import { Link } from "react-router-dom";
+
 import logo from "../../assets/logo.svg";
 import arrow from "../../assets/icons/arrow.svg";
 
@@ -8,10 +10,9 @@ import { Stepper } from "../../components/Stepper";
 import { FirstForm } from "./steps/FirstForm";
 import { SecondForm } from "./steps/SecondForm";
 import { ThirdForm } from "./steps/ThirdForm";
-import { Button } from "../../components/Button";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { api } from "../../hooks/useApi";
-// import { ButtonSubmit } from "../../components/ButtonSubmit";
+import { ButtonSubmit } from "../../components/ButtonSubmit";
 
 export function AnamnesisForm() {
   const auth = useContext(AuthContext);
@@ -50,54 +51,77 @@ export function AnamnesisForm() {
     const convertKnees = Number(knees);
     const convertFeetAndAnkles = Number(feetAndAnkles);
 
-    console.log({
-      gender,
-      age: convertedAge,
-      height: convertedHeight,
-      weight: convertedWeight,
-      profession,
-      sittingOrStanding,
-      jointProblems,
-      healthProblems,
-      napeNeck: convertNapeNeck,
-      upperBack: convertUpperBack,
-      lowerBack: convertLowerBack,
-      legs: convertLegs,
-      knees: convertKnees,
-      feetAndAnkles: convertFeetAndAnkles,
+    const { data } = await api.get(`/users/${auth.user?.id}/anamnesis`, {
+      headers: {
+        Authorization: `Bearer ${auth.user?.token}`,
+      },
     });
 
-    await api
-      .post(
-        `/users/${auth.user?.id}/anamnesis`,
-        {
-          age: convertedAge,
-          gender,
-          weight: convertedWeight,
-          height: convertedHeight,
-          profession,
-          sittingOrStanding,
-          jointProblems,
-          healthProblems,
-          napeNeck: convertNapeNeck,
-          upperBack: convertUpperBack,
-          lowerBack: convertLowerBack,
-          legs: convertLegs,
-          knees: convertKnees,
-          feetAndAnkles: convertFeetAndAnkles,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${auth.user?.token}`,
+    if (data) {
+      await api
+        .put(
+          `/anamnesis/${data.id}`,
+          {
+            age: convertedAge,
+            gender,
+            weight: convertedWeight,
+            height: convertedHeight,
+            profession,
+            sittingOrStanding,
+            jointProblems,
+            healthProblems,
+            napeNeck: convertNapeNeck,
+            upperBack: convertUpperBack,
+            lowerBack: convertLowerBack,
+            legs: convertLegs,
+            knees: convertKnees,
+            feetAndAnkles: convertFeetAndAnkles,
           },
-        }
-      )
-      .then((response) => {
-        console.log(response.data); // Verifique se a resposta está sendo retornada corretamente
-      })
-      .catch((error) => {
-        console.error(error); // Trate ou registre qualquer erro ocorrido na solicitação
-      });
+          {
+            headers: {
+              Authorization: `Bearer ${auth.user?.token}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      await api
+        .post(
+          `/users/${auth.user?.id}/anamnesis`,
+          {
+            age: convertedAge,
+            gender,
+            weight: convertedWeight,
+            height: convertedHeight,
+            profession,
+            sittingOrStanding,
+            jointProblems,
+            healthProblems,
+            napeNeck: convertNapeNeck,
+            upperBack: convertUpperBack,
+            lowerBack: convertLowerBack,
+            legs: convertLegs,
+            knees: convertKnees,
+            feetAndAnkles: convertFeetAndAnkles,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${auth.user?.token}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
 
     setSteps(steps + 1);
   }
@@ -181,6 +205,18 @@ export function AnamnesisForm() {
                     bem-vindo(a) à nossa estação de criação de ficha de
                     anamnese!
                   </p>
+
+                  <div className="w-64 mx-auto mt-10">
+                    <p className="font-bold text-white text-center mt-4">
+                      Criar ou editar sua ficha de anamnesis ou
+                    </p>
+                    <Link
+                      className="text-orange text-lg text-center md:block after:content-[''] after:bg-orange after:w-0 after:h-[2px] after:block hover:after:w-full after:transition-all duration-200"
+                      to="/perfil"
+                    >
+                      Deseja entrar no seu perfil? →
+                    </Link>
+                  </div>
                 </>
               )}
               {steps === 2 && (
@@ -205,6 +241,17 @@ export function AnamnesisForm() {
                       HONESTO EM SUAS RESPOSTAS!
                     </span>
                   </p>
+                  <div className="w-64 mx-auto mt-10">
+                    <p className="font-bold text-white text-center mt-4">
+                      Continuar editando sua ficha de anamnesis ou
+                    </p>
+                    <Link
+                      className="text-orange text-lg text-center md:block after:content-[''] after:bg-orange after:w-0 after:h-[2px] after:block hover:after:w-full after:transition-all duration-200"
+                      to="/perfil"
+                    >
+                      Deseja entrar no seu perfil? →
+                    </Link>
+                  </div>
                 </>
               )}
               {steps === 3 && (
@@ -238,15 +285,16 @@ export function AnamnesisForm() {
             <div className="flex justify-center">{forms[steps - 1]}</div>
 
             <div className="w-full bg-background flex justify-end">
-              <div className="w-28 mr-10 h-[1.80rem]">
-                {/* <ButtonSubmit>Próximo</ButtonSubmit> */}
-                {steps === 2 && <Button>Próximo</Button>}
+              <div className="w-28 mr-10">
+                {steps === 2 && <ButtonSubmit>Próximo</ButtonSubmit>}
               </div>
             </div>
           </form>
           <div className="w-full bg-background flex justify-end">
             <div className="w-28 mr-10 h-[1.80rem]">
-              {steps === 1 && <Button onClick={handleSteps}>Próximo</Button>}
+              {steps === 1 && (
+                <ButtonSubmit onClick={handleSteps}>Próximo</ButtonSubmit>
+              )}
             </div>
           </div>
         </div>

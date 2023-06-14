@@ -21,7 +21,6 @@ function classNames(...classes: (string | boolean)[]): string {
 
 export function Navbar({ heightScroll = 0 }: NavbarProps) {
   const [toggle, setToggle] = useState<boolean>(false);
-  const [optionsNavBar, setOptionsNavBar] = useState<boolean>(false);
 
   const location = useLocation();
 

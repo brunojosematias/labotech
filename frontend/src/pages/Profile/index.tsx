@@ -1,10 +1,16 @@
-import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
-import { Button } from "../../components/Button";
+import { FormEvent, useContext, useEffect, useState } from "react";
+
+import { ButtonSubmit } from "../../components/ButtonSubmit";
 import { Navbar } from "../../components/Navbar";
-import { Table } from "../../components/Table";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../hooks/useApi";
+
+import { Trash } from "@phosphor-icons/react";
+
+import { CircleNotch, PlusCircle } from "@phosphor-icons/react";
+
+import { PencilSimpleLine } from "@phosphor-icons/react";
 
 interface IFirstFormValues {
   id: string;
@@ -31,10 +37,11 @@ export function Profile() {
   const [avatar, setAvatar] = useState<string>("");
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
 
-  // const [profession, setProfession] = useState<string>("");
-  // const [age, setAge] = useState<number>(0);
   const [anamsesisFormDatas, setAnamsesisFormDatas] =
     useState<IFirstFormValues>();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [edit, setEdit] = useState(false);
 
   const questions = [
     {
@@ -111,6 +118,7 @@ export function Profile() {
 
   useEffect(() => {
     const fetchAnamnesisForm = async () => {
+      setIsLoading(true);
       try {
         const response = await api.get(`/users/${auth.user?.id}/anamnesis`, {
           headers: {
@@ -119,7 +127,11 @@ export function Profile() {
         });
         // setProfession(response.data.profession);
         // setAge(response.data.age);
-        setAnamsesisFormDatas(response.data);
+
+        setTimeout(() => {
+          setAnamsesisFormDatas(response.data);
+          setIsLoading(false);
+        }, 1000);
       } catch (error) {
         console.error("Erro ao buscar o formulário de anamnese:", error);
       }
@@ -137,6 +149,19 @@ export function Profile() {
     await api.patch("/users/avatar", formData, {
       headers: headers,
     });
+
+    setEdit(false);
+  }
+
+  function handleEdit() {
+    setEdit(true);
+  }
+
+  async function handleDelele() {
+    setIsLoading(true);
+    await api.delete(`users/${auth.user?.id}`);
+    setIsLoading(false);
+    navigate("/entrar");
   }
 
   const handleAvatarChange = (event: any) => {
@@ -153,14 +178,28 @@ export function Profile() {
     }
   };
 
+  function handleEditFormAnamnesis() {
+    navigate("/ficha-anamnese");
+    window.scrollTo(0, 0);
+  }
+
   async function handleLogout() {
     headers.Authorization = "";
     await auth.signout();
     navigate("/entrar");
+    window.scrollTo(0, 0);
   }
 
   const imgSrc =
     avatarPreview || `http://localhost:3333/avatar/${auth.user?.avatar}`;
+
+  if (isLoading) {
+    return (
+      <div className="fixed top-0 left-0 z-50 w-screen h-screen flex items-center justify-center bg-background">
+        <CircleNotch className="w-14 h-14 text-orange animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -168,46 +207,42 @@ export function Profile() {
 
       <div className="bg-background h-full relative">
         <div className="bg-[#80A1C1] h-32"></div>
-        <div className="container mx-auto">
-          <div className="flex items-center gap-6 absolute top-14">
-            <div className="bg-cinza_escuro rounded-full border-background border-8 ">
-              <img className="rounded-full w-48 h-48" src={imgSrc} alt="" />
-            </div>
 
-            <form onSubmit={handleSubmit}>
-              <label className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
-                <svg
-                  className="w-4 h-4 mr-2"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+        <form noValidate onSubmit={handleSubmit} className="container mx-auto">
+          <div className="mt-6 flex justify-end">
+            <div className="w-36 h-20">
+              {edit && imgSrc && (
+                <ButtonSubmit onClick={handleEdit}>Salvar imagem</ButtonSubmit>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-6 absolute top-14">
+            <div className="bg-cinza_escuro w-48 h-48 rounded-full border-background border-8 relative">
+              {(auth.user?.avatar || avatarPreview) && (
+                <img className="rounded-full w-48 h-48" src={imgSrc} alt="" />
+              )}
+
+              <>
+                <label className="absolute bottom-2 right-0 cursor-pointer">
+                  <PlusCircle className="w-10 h-10 text-orange" />
+                  <input
+                    id="avatar"
+                    type="file"
+                    onChange={handleAvatarChange}
+                    className="hidden"
+                    onClick={handleEdit}
                   />
-                </svg>
-                Selecionar Imagem
-                <input
-                  id="avatar"
-                  type="file"
-                  onChange={handleAvatarChange}
-                  className="hidden"
-                />
-              </label>
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Salvar
-              </button>
-            </form>
+                </label>
+              </>
+            </div>
 
             <div className="mt-16">
               <span className="text-2xl text-white">
+                <Trash
+                  onClick={handleDelele}
+                  className="text-red-500 w-8 h-8 p-1 rounded-md hover:bg-white hover:bg-opacity-20 cursor-pointer"
+                />
                 {auth.user?.name} {auth.user?.surname}
               </span>
               <span className="text-lg block text-[#AAAAAA]">
@@ -221,9 +256,9 @@ export function Profile() {
           </div>
 
           <div className="flex items-end justify-center  mt-40">
-            <div className="mt-40 flex items-end">
+            <div className="flex items-end">
               <div className="flex flex-col p-14 w-[80rem]">
-                <h1 className="text-2xl text-orange">Meu Histórico</h1>
+                <h1 className="text-2xl text-orange">Ficha de anamnese</h1>
                 <div className="flex-1 overflow-auto mt-8">
                   <table className="w-full border-collapse min-w-[600px]">
                     <thead>
@@ -234,32 +269,44 @@ export function Profile() {
                         <th className="bg-orange p-4 text-left text-[#E1E1E6] text-sm leading-6 first:rounded-l-lg first:pl-6 last:rounded-r-lg last:pr-6">
                           Respostas
                         </th>
+
+                        <th className="bg-orange flex justify-end p-4 text-white text-sm leading-6 first:rounded-l-lg w-full last:rounded-r-lg last:pr-6 ">
+                          <PencilSimpleLine
+                            onClick={handleEditFormAnamnesis}
+                            className="w-10 h-10 p-1 rounded-md hover:bg-white hover:bg-opacity-60 hover:text-orange transition-colors duration-200 cursor-pointer"
+                          />
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
-                      {questions.map((item) => (
-                        <tr
-                          key={item.id}
-                          className="text-white bg-cinza_escuro"
-                        >
-                          <td className="border-t-4 border-[#202024] p-4 text-sm leading-6 first:w-1/2 first:pl-6 last:rounded-r-lg pr-6">
-                            {item.question}
-                          </td>
-                          <td className="border-t-4 border-[#202024] p-4 text-sm leading-6 first:w-1/2 first:pl-6 last:rounded-r-lg pr-6">
-                            {item.answers === "" ? "Nenhum" : item.answers}
-                          </td>
-                        </tr>
-                      ))}
+                      {anamsesisFormDatas &&
+                        questions.map((item) => (
+                          <tr
+                            key={item.id}
+                            className="text-white bg-cinza_escuro"
+                          >
+                            <td className="border-t-4 border-[#202024] p-4 text-sm leading-6 first:w-1/2 first:pl-6 last:rounded-r-lg pr-6">
+                              {item.question}
+                            </td>
+                            <td className="border-t-4 border-[#202024] p-4 text-sm leading-6 first:w-1/2 first:pl-6 last:rounded-r-lg pr-6">
+                              {item.answers === "" ? "Nenhum" : item.answers}
+                            </td>
+
+                            <td className="border-t-4 border-[#202024] p-4 text-sm leading-6 first:w-1/2 first:pl-6 last:rounded-r-lg pr-6"></td>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>
               </div>
               <div className="mb-12">
-                <Button onClick={handleLogout}>Sair da conta</Button>
+                <ButtonSubmit onClick={handleLogout}>
+                  Sair da conta
+                </ButtonSubmit>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );
