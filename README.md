@@ -42,7 +42,7 @@ git push origin secondary
 ```	
 
 
-## Faça esse processo somente terminar de desenvolver E SE ESTIVER TUDO FUNCIONANDO	
+## Faça esse processo somente quando terminar de desenvolver E SE ESTIVER TUDO FUNCIONANDO	
 
 ### irá selecionar a branch main	
 ```bash	
