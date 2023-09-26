@@ -110,7 +110,6 @@ export function Login() {
                   onChange={handlePassword}
                   className="bg-background border rounded-3xl mb-4 py-3 pl-8 pr-2 focus:outline-none focus:border-orange transition-all"
                 />{" "}
-                // Esconder o loading
                 <div className="flex">
                   {
                     <div className="text-white font-extralight flex items-center outline-none">

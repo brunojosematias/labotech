@@ -1,0 +1,86 @@
+# version: '3.8'
+
+# services:
+#   backend:
+#     build:
+#       context: ./labotech/backend
+#     container_name: backend-container
+#     restart: always
+#     volumes:
+#       - ./labotech/backend:/app
+#     ports:
+#     "3000:3000"
+#     depends_on:
+#     db
+
+#   frontend:
+#     build:
+#       context: ./labotech/frontend
+#     container_name: frontend-container
+#     restart: always
+#     volumes:
+
+#     ./labotech/frontend:/app
+#     ports:
+#     "3001:3000"
+#     depends_on:
+#     backend
+
+#   db:
+#     image: postgress
+#     command: --default-authentication-plugin=mysql_native_password
+#     container_name: mysql-container
+#     environment:
+#       MYSQL_ROOT_PASSWORD: example
+#     volumes:
+
+#     ./labotech/backend/database:/var/lib/mysql
+#     restart: always
+
+# networks:
+#   default:
+#     external:
+#       name: bridge
+version: "3"
+
+services:
+  backend:
+    # build: ./backend
+    image: node:18-slim
+    container_name: backend-container
+    working_dir: /home/node/app
+    # restart: always
+    volumes:
+      - ./backend:/home/node/app
+    ports:
+      - "3333:3333"
+    depends_on:
+      - db
+    command: npm run dev
+
+  frontend:
+    # build: ./frontend
+    image: node:18-slim
+    container_name: frontend-container
+    working_dir: /home/node/app
+    # restart: always
+    volumes:
+      - ./frontend:/home/node/app
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    command: npm run dev --host 0.0.0.0
+
+  db:
+    image: postgres:latest
+    container_name: labotech-postgres
+    environment:
+      POSTGRES_DB: labotech
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
