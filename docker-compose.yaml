@@ -1,69 +1,28 @@
-# version: '3.8'
-
-# services:
-#   backend:
-#     build:
-#       context: ./labotech/backend
-#     container_name: backend-container
-#     restart: always
-#     volumes:
-#       - ./labotech/backend:/app
-#     ports:
-#     "3000:3000"
-#     depends_on:
-#     db
-
-#   frontend:
-#     build:
-#       context: ./labotech/frontend
-#     container_name: frontend-container
-#     restart: always
-#     volumes:
-
-#     ./labotech/frontend:/app
-#     ports:
-#     "3001:3000"
-#     depends_on:
-#     backend
-
-#   db:
-#     image: postgress
-#     command: --default-authentication-plugin=mysql_native_password
-#     container_name: mysql-container
-#     environment:
-#       MYSQL_ROOT_PASSWORD: example
-#     volumes:
-
-#     ./labotech/backend/database:/var/lib/mysql
-#     restart: always
-
-# networks:
-#   default:
-#     external:
-#       name: bridge
+# Define a versão do Docker Compose que está sendo usada
 version: "3"
 
+# "services" define os três containers que fazem parte da aplicação (backend, frontend e db)
 services:
-  backend:
-    # build: ./backend
+  backend: 
+    # Imagem do Docker Hub para criar um container Node.js
     image: node:18-slim
     container_name: backend-container
     working_dir: /home/node/app
-    # restart: always
+    # "volumes" mapeia a pasta ./backend do host para /home/node/app dentro do container
     volumes:
       - ./backend:/home/node/app
+    # Expõe a porta '3333' do contêiner para a porta '3333' do host
     ports:
       - "3333:3333"
     depends_on:
       - db
+    # Comando para iniciar o servidor Node.js
     command: npm run dev
 
   frontend:
-    # build: ./frontend
     image: node:18-slim
     container_name: frontend-container
     working_dir: /home/node/app
-    # restart: always
     volumes:
       - ./frontend:/home/node/app
     ports:
@@ -73,8 +32,10 @@ services:
     command: npm run dev --host 0.0.0.0
 
   db:
+    # Imagem do Docker Hub para criar um container do PostgreSQL
     image: postgres:latest
     container_name: labotech-postgres
+    # Configuração das variáveis de ambiente relacionadas ao PostgreSQL
     environment:
       POSTGRES_DB: labotech
       POSTGRES_USER: root
@@ -82,5 +43,8 @@ services:
     ports:
       - "5432:5432"
 
+# Volumes são usados para persistência de dados entre contêineres e reinicializações
 volumes:
   postgres_data:
+
+# Este arquivo de composição Docker Compose cria três contêineres: um para o backend, um para o frontend e um para o banco de dados PostgreSQL. Esses contêineres são interconectados e configurados para executar os serviços Node.js e o banco de dados PostgreSQL.
