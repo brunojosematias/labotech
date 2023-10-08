@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "anamnesis_form" ALTER COLUMN "age" SET DATA TYPE DOUBLE PRECISION;

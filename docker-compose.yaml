@@ -3,8 +3,8 @@ version: "3"
 
 # "services" define os três containers que fazem parte da aplicação (backend, frontend e db)
 services:
-  backend: 
-    # Imagem do Docker Hub para criar um container Node.js
+  backend:
+    # Imagem do Docker Hub para criar um container Node.jsSj
     image: node:18-slim
     container_name: backend-container
     working_dir: /home/node/app
@@ -37,7 +37,6 @@ services:
     container_name: labotech-postgres
     # Configuração das variáveis de ambiente relacionadas ao PostgreSQL
     environment:
-      POSTGRES_DB: labotech
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
     ports:
