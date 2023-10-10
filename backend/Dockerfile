@@ -1,9 +1,19 @@
-FROM node:18-slim
+FROM node:16-alpine3.17 AS builder
 
-USER node
+RUN apk add --no-cache libc6-compat openssl1.1-compat
 
-RUN mkdir -p /home/node/app/backend
+# Create app directory
+COPY . /app
 
-WORKDIR /home/node/app/backend
+WORKDIR /usr/src/app
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
 
-CMD [ ".docker/start.sh"]
+# Install app dependencies
+RUN npm install
+
+RUN npm run build
+
+FROM node:14
+
+EXPOSE 3333
+CMD [ "npm", "run", "dev" ]

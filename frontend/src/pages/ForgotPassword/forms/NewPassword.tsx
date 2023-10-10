@@ -25,7 +25,7 @@ export function NewPassword() {
           type="password"
           name="password"
           placeholder="Confirme sua nova senha"
-          id="password"
+          // id="password"
           autoComplete="current-password"
           required
           className="bg-background border rounded-3xl mb-10 py-3 pl-8 pr-2 md:w-96 focus:outline-none focus:border-orange transition-all"
