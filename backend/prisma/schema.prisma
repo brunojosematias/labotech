@@ -58,26 +58,31 @@ model AnamnesisForm {
 }
 
 model Exercises {
-  id            String   @id @default(uuid())
+  id            String          @id @default(uuid())
   name          String
   type          String
   time          Int
   level         Int
   demonstration String
-  created_at    DateTime @default(now())
+  created_at    DateTime        @default(now())
+  NameExercises NameExercises[]
+
+  CompletedExercises   CompletedExercises @relation(fields: [CompletedExercisesId], references: [id])
+  CompletedExercisesId String
 
   @@map("exercises")
 }
 
 model CompletedExercises {
-  id         String   @id @default(uuid())
+  id         String      @id @default(uuid())
   exercise   String
   status     String
   level      Int
   time       Int
-  created_at DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id])
+  created_at DateTime    @default(now())
+  user       User        @relation(fields: [userId], references: [id])
   userId     String
+  Exercises  Exercises[]
 
   @@map("completed_exercises")
 }
