@@ -69,6 +69,15 @@ model Exercises {
   @@map("exercises")
 }
 
+model NameExercises {
+  id          String    @id @default(uuid())
+  name        String
+  Exercises   Exercises @relation(fields: [ExercisesId], references: [id])
+  ExercisesId String
+
+  @@map("NameExercises")
+}
+
 model CompletedExercises {
   id         String   @id @default(uuid())
   exercise   String
