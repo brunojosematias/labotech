@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 import multer from "multer";
+import nodemailer from "nodemailer";
 
 import listUsers from "../modules/accounts/useCases/listUsers";
 import createUsers from "../modules/accounts/useCases/createUsers";
@@ -27,5 +28,32 @@ usersRouter.patch(
   uploadAvatar.single("avatar"),
   updateUserAvatar
 );
+
+usersRouter.get("/send-email", async (req, res) => {
+
+  const transport = nodemailer.createTransport({
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: "92bcdb9619d4e6",
+      pass: "********8e6e"
+    }
+
+  });
+
+  const message = { 
+    from: "noreply@labotech.com",
+    to: "Iara",
+    subject: "Sei lá",
+    text: "Plaintext version of the message",
+    html: "<p>HTML version of the message</p>"
+  };
+  
+  await transport.sendMail(message);
+
+  //     erro: true,
+  // mensagem: "Erro: E-mail não enviado!"
+  // });
+})
 
 export { usersRouter };
