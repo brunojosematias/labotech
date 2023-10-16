@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts"
   },
   "dependencies": {
-    "@prisma/client": "^4.14.1",
+    "@prisma/client": "^5.4.1",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dayjs": "^1.11.7",
@@ -16,7 +16,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.2",
     "path": "^0.12.7",
-    "prisma": "^4.14.1"
+    "prisma": "^5.4.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
