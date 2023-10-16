@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Navbar } from "../../components/Navbar";
 import { ButtonStart } from "../../components/ButtonStart";
@@ -14,11 +14,17 @@ import laboInstrutores from "../../assets/images/labo-instrutores.svg";
 export function Home() {
   const [scroll, setScroll] = useState(0);
 
-  function handleScroll() {
-    setScroll(window.scrollY);
-  }
+  useEffect(() => {
+    function handleScroll() {
+      setScroll(window.scrollY);
+    }
 
-  window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); 
 
   return (
     <div className="bg-background scroll-smooth font-nunito">

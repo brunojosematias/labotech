@@ -4,8 +4,8 @@ RUN apk add --no-cache libc6-compat openssl1.1-compat
 
 # Create app directory
 COPY . /app
-
 WORKDIR /usr/src/app
+
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 
 # Install app dependencies
