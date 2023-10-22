@@ -30,18 +30,18 @@ usersRouter.patch(
 );
 usersRouter.get("/send-email", async (req, res) => {
 
-  var transport = nodemailer.createTransport({
+  const transport = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io",
     port: 2525,
     auth: {
-      user: "92bcdb9619d4e6",
-      pass: "********8e6e"
+      user: "ff572aabf6f85c",
+      pass: "2e033db9764113"
     }
   });
 
   const message = { 
     from: "noreply@labotech.com",
-    to: "mariaiarasbraga@gmail.com",
+    to: "vitorsampaiodelavor@gmail.com",
     subject: "Projeto labotech",
     text: "Deu certo!!!",
     html: "<p>HTML version of the message</p>"
@@ -52,3 +52,4 @@ usersRouter.get("/send-email", async (req, res) => {
   return res.json({message: "OK"})
 
 })
+
