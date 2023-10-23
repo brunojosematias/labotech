@@ -32,7 +32,7 @@ usersRouter.patch(
 usersRouter.get("/send-email", async (req, res) => {
 
   const transport = nodemailer.createTransport({
-    host: "sandbox.smtp.mailtrap.io",
+    host: "http://localhost:8080/send-email",
     port: 2525,
     auth: {
       user: "92bcdb9619d4e6",
