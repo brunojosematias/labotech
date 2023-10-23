@@ -30,18 +30,18 @@ usersRouter.patch(
 );
 usersRouter.get("/send-email", async (req, res) => {
 
-  const transport = nodemailer.createTransport({
+  var transport = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io",
     port: 2525,
     auth: {
-      user: "ff572aabf6f85c",
-      pass: "2e033db9764113"
+      user: "92bcdb9619d4e6",
+      pass: "********8e6e"
     }
   });
 
   const message = { 
     from: "noreply@labotech.com",
-    to: "vitorsampaiodelavor@gmail.com",
+    to: "mariaiarasbraga@gmail.com",
     subject: "Projeto labotech",
     text: "Deu certo!!!",
     html: "<p>HTML version of the message</p>"
@@ -52,37 +52,3 @@ usersRouter.get("/send-email", async (req, res) => {
   return res.json({message: "OK"})
 
 })
-
-
-usersRouter.get("/send-email", async (req, res) => {
-
-  const transport = nodemailer.createTransport({
-<<<<<<< Updated upstream
-    host: "http://localhost:8080/send-email",
-=======
-    host: "sandbox.smtp.mailtrap.io",
->>>>>>> Stashed changes
-    port: 2525,
-    auth: {
-      user: "92bcdb9619d4e6",
-      pass: "********8e6e"
-    }
-
-  });
-
-  const message = { 
-    from: "noreply@labotech.com",
-    to: "Iara",
-    subject: "Sei lá",
-    text: "Plaintext version of the message",
-    html: "<p>HTML version of the message</p>"
-  };
-  
-  await transport.sendMail(message);
-
-  //     erro: true,
-  // mensagem: "Erro: E-mail não enviado!"
-  // });
-})
-
-export { usersRouter };
