@@ -3,7 +3,11 @@ import arthur from "../../../assets/images/arthur.svg";
 import { Link } from "react-router-dom";
 import { Button } from "../../../components/Button";
 
-export function Code({ onGoToNewPassword }: { onGoToNewPassword?: () => void }) {
+export function Code({
+  onGoToNewPassword,
+}: {
+  onGoToNewPassword?: () => void;
+}) {
   const handleRenewPassword = () => {
     if (onGoToNewPassword) {
       onGoToNewPassword();
@@ -11,7 +15,7 @@ export function Code({ onGoToNewPassword }: { onGoToNewPassword?: () => void }) 
   };
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex-col justify-between items-center md:flex md:flex-row">
       <div className="text-white">
         <p className="text-center font-extralight pt-6">
           Essa não! Sua conta está perdida?
@@ -34,7 +38,7 @@ export function Code({ onGoToNewPassword }: { onGoToNewPassword?: () => void }) 
           Esqueceu a senha
         </h2>
         <form
-          className="flex flex-col font-extralight text-white px-9 md:pl-0 md:pr-60"
+          className="flex flex-col font-extralight text-white px-14 md:pl-0 md:pr-60"
           action="#"
           method="POST"
         >

@@ -10,7 +10,7 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
   };
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex-col justify-between items-center md:flex md:flex-row">
       <div className="text-white">
         <p className="text-center font-extralight pt-6">
           Essa não! Sua conta está perdida?

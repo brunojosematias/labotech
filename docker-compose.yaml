@@ -16,7 +16,7 @@ services:
       - ./backend:/home/node/app
     # Expõe a porta '3333' do contêiner para a porta '3333' do host
     ports:
-      - "3333:333"
+      - "444:444"
     depends_on:
       - db
     networks:
