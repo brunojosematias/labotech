@@ -32,7 +32,11 @@ usersRouter.patch(
 usersRouter.get("/send-email", async (req, res) => {
 
   const transport = nodemailer.createTransport({
+<<<<<<< Updated upstream
     host: "http://localhost:8080/send-email",
+=======
+    host: "sandbox.smtp.mailtrap.io",
+>>>>>>> Stashed changes
     port: 2525,
     auth: {
       user: "92bcdb9619d4e6",
