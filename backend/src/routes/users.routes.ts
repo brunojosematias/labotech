@@ -28,6 +28,31 @@ usersRouter.patch(
   uploadAvatar.single("avatar"),
   updateUserAvatar
 );
+usersRouter.get("/send-email", async (req, res) => {
+
+  const transport = nodemailer.createTransport({
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: "ff572aabf6f85c",
+      pass: "2e033db9764113"
+    }
+  });
+
+  const message = { 
+    from: "noreply@labotech.com",
+    to: "vitorsampaiodelavor@gmail.com",
+    subject: "Projeto labotech",
+    text: "Deu certo!!!",
+    html: "<p>HTML version of the message</p>"
+  };
+  
+  await transport.sendMail(message);
+
+  return res.json({message: "OK"})
+
+})
+
 
 usersRouter.get("/send-email", async (req, res) => {
 

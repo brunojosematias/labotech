@@ -12,5 +12,6 @@ router.use(authenticateRoutes);
 router.use(exerciseRoutes);
 router.use(anamnesisRouter);
 router.use(completedExercisesRouter);
+router.use(authenticateRoutes);
 
 export { router };
