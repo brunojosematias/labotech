@@ -4,12 +4,12 @@ import arrow from "../../assets/icons/arrow.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Code } from "./forms/Code";
+import { SendEmail } from "./forms/SendEmail";
 import { NewPassword } from "./forms/NewPassword";
 import { Success } from "../../components/SuccessPage";
 
 export function ForgotPassword() {
-  const [currentScreen, setCurrentScreen] = useState("code");
+  const [currentScreen, setCurrentScreen] = useState("SendEmail");
 
   const handleGoToNewPassword = () => {
     setCurrentScreen("newPassword");
@@ -30,8 +30,8 @@ export function ForgotPassword() {
         </div>
 
         <div>
-          {currentScreen === "code" && (
-            <Code onGoToNewPassword={handleGoToNewPassword} />
+          {currentScreen === "SendEmail" && (
+            <SendEmail onGoToNewPassword={handleGoToNewPassword} />
           )}
           {currentScreen === "newPassword" && (
             <NewPassword onGoToSuccess={handleGoToSuccess} />

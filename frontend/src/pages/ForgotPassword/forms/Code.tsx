@@ -42,17 +42,8 @@ export function Code({
           action="#"
           method="POST"
         >
-          <input
-            type="email"
-            name="email"
-            placeholder="E-mail"
-            id="email"
-            autoComplete="email"
-            required
-            className="bg-background border rounded-3xl mb-3 py-3 pl-8 w-full focus:outline-none focus:border-orange transition-all"
-          />
 
-          <div className="flex gap-2 items-center mb-8">
+          <div className="flex gap-2 items-center mb-14">
             <input
               type="text"
               name="rescueCode"
@@ -68,10 +59,10 @@ export function Code({
             </div>
           </div>
 
-          <Button onClick={handleRenewPassword}>Renovar senha</Button>
+          <Button onClick={handleRenewPassword}>Inserir nova senha</Button>
         </form>
 
-        <div className="text-center font-extralight mt-8 md:pr-60">
+        <div className="text-center font-extralight mt-12 md:pr-60">
           <p className="text-white">
             Ainda com problemas para recuperar sua conta?
           </p>
