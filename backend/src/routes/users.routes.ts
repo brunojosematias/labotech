@@ -53,32 +53,3 @@ usersRouter.get("/send-email", async (req, res) => {
 
 })
 
-
-usersRouter.get("/send-email", async (req, res) => {
-
-  const transport = nodemailer.createTransport({
-    host: "sandbox.smtp.mailtrap.io",
-    port: 2525,
-    auth: {
-      user: "92bcdb9619d4e6",
-      pass: "********8e6e"
-    }
-
-  });
-
-  const message = { 
-    from: "noreply@labotech.com",
-    to: "Iara",
-    subject: "Sei lá",
-    text: "Plaintext version of the message",
-    html: "<p>HTML version of the message</p>"
-  };
-  
-  await transport.sendMail(message);
-
-  //     erro: true,
-  // mensagem: "Erro: E-mail não enviado!"
-  // });
-})
-
-export { usersRouter };

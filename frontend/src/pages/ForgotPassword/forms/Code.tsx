@@ -42,8 +42,17 @@ export function Code({
           action="#"
           method="POST"
         >
+          <input
+            type="email"
+            name="email"
+            placeholder="E-mail"
+            id="email"
+            autoComplete="email"
+            required
+            className="bg-background border rounded-3xl mb-3 py-3 pl-8 w-full focus:outline-none focus:border-orange transition-all"
+          />
 
-          <div className="flex gap-2 items-center mb-14">
+          <div className="flex gap-2 items-center mb-8">
             <input
               type="text"
               name="rescueCode"
