@@ -1,11 +1,16 @@
 import arthur from "../../../assets/images/arthur.svg";
 
+import { Link } from "react-router-dom";
 import { Button } from "../../../components/Button";
 
-export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
-  const handleGoToSuccess = () => {
-    if (onGoToSuccess) {
-      onGoToSuccess();
+export function SendEmail({
+  onGoToNewPassword,
+}: {
+  onGoToNewPassword?: () => void;
+}) {
+  const handleRenewPassword = () => {
+    if (onGoToNewPassword) {
+      onGoToNewPassword();
     }
   };
 
@@ -30,58 +35,50 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
 
       <div className="bg-background scroll-smooth pb-7 md:pb-0">
         <div className="text-center md:pr-60">
-          <h2 className="text-orange font-medium text-3xl mb-10">
+          <h2 className="text-orange font-medium text-3xl mb-16 md:mb-10">
             Esqueceu a senha
           </h2>
-          <div className="font-medium mb-8">
-          <p className="text-orange text-2xl mb-3">Sucesso!</p>
-          <p className="text-white"> 
-            Código confirmado!
+
+          <p className="text-white mb-10">
+            Recupere sua conta no LaboTech!
             <br />
-            Agora, redefina sua senha.
+            <span className="text-orange">
+              Informe seu e-mail, assim, <br />
+              mandaremos um código de resgate
+            </span>
+            .
           </p>
-          </div>
         </div>
 
         <form
-          className="flex flex-col font-extralight text-white px-9 md:px-0 md:mr-64"
+          className="flex flex-col font-extralight text-white px-14 md:pl-0 md:pr-60"
           action="#"
           method="POST"
         >
           <input
-            type="password"
-            name="password"
-            placeholder="Insira sua nova senha"
-            id="password"
-            autoComplete="current-password"
+            type="email"
+            name="email"
+            placeholder="E-mail"
+            id="email"
+            autoComplete="email"
             required
-            className="bg-background border rounded-3xl mb-6 py-3 pl-8 pr-2 md:w-96 focus:outline-none focus:border-orange transition-all"
+            className="bg-background border rounded-3xl mb-8 py-3 pl-8 w-full focus:outline-none focus:border-orange transition-all"
           />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Confirme sua nova senha"
-            // id="password"
-            autoComplete="current-password"
-            required
-            className="bg-background border rounded-3xl mb-10 py-3 pl-8 pr-2 md:w-96 focus:outline-none focus:border-orange transition-all"
-          />
-
-          <Button onClick={handleGoToSuccess}>Renovar senha</Button>
+          <Button onClick={handleRenewPassword}>Enviar código</Button>
         </form>
 
-        <div className="text-center font-extralight mt-8 md:mr-64">
+        <div className="text-center font-extralight mt-8 md:pr-60">
           <p className="text-white">
             Ainda com problemas para recuperar sua conta?
           </p>
-          <a
-            href="#"
+          <Link
+            to="#"
             className="text-orange underline ml-1 hover:text-white"
             id="cadastrar"
           >
             Entre em contato com o suporte aqui.
-          </a>
+          </Link>
         </div>
       </div>
     </div>
