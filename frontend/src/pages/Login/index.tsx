@@ -119,11 +119,11 @@ export function Login() {
                         id="rememberMe"
                         className="appearance-none h-4 w-4 border border-spacing-2 rounded-sm mr-2 focus:outline-none checked:bg-orange"
                       />
-                      <label /*for="rememberMe"*/>Lembrar de mim</label>
+                      <label>Lembrar de mim</label>
                     </div>
                   }
 
-                  <div className="text-white underline font-bold ml-48 md:ml-24 hover:text-orange">
+                  <div className="text-white underline font-bold ml-48  md:pr-2 md:ml-24 hover:text-orange">
                     <a href="/recuperar-senha">Esqueceu a senha?</a>
                   </div>
                 </div>

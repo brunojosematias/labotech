@@ -51,7 +51,7 @@ export function SendEmail({
         </div>
 
         <form
-          className="flex flex-col font-extralight text-white px-14 md:pl-0 md:pr-60"
+          className="flex flex-col font-extralight text-white px-9 md:pl-0 md:pr-60"
           action="#"
           method="POST"
         >
@@ -62,7 +62,7 @@ export function SendEmail({
             id="email"
             autoComplete="email"
             required
-            className="bg-background border rounded-3xl mb-8 py-3 pl-8 w-full focus:outline-none focus:border-orange transition-all"
+            className="bg-background border rounded-3xl mb-8 py-3 pl-8 w-full md:w-96 focus:outline-none focus:border-orange transition-all"
           />
 
           <Button onClick={handleSendCode}>Enviar código</Button>
