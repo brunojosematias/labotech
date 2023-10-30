@@ -4,6 +4,7 @@ import arrow from "../../assets/icons/arrow.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { Code } from "./forms/Code";
 import { SendEmail } from "./forms/SendEmail";
 import { NewPassword } from "./forms/NewPassword";
 import { Success } from "../../components/SuccessPage";
@@ -19,6 +20,10 @@ export function ForgotPassword() {
     setCurrentScreen("success");
   };
 
+  const handleGoToSendCode = () => {
+    setCurrentScreen("code");
+  };
+
   return (
     <div className="bg-background scroll-smooth">
       <div className="container mx-auto h-screen">
@@ -31,7 +36,10 @@ export function ForgotPassword() {
 
         <div>
           {currentScreen === "SendEmail" && (
-            <SendEmail onGoToNewPassword={handleGoToNewPassword} />
+            <SendEmail onGoToCode={handleGoToSendCode} />
+          )}
+          {currentScreen === "code" && (
+            <Code onGoToNewPassword={handleGoToNewPassword} />
           )}
           {currentScreen === "newPassword" && (
             <NewPassword onGoToSuccess={handleGoToSuccess} />

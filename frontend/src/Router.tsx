@@ -10,7 +10,7 @@ import { RequireAuth } from "./contexts/Auth/RequireAuth";
 import { InitExercice } from "./pages/InitExercice";
 import { NewPassword } from "./pages/ForgotPassword/forms/NewPassword";
 import { SendEmail } from "./pages/ForgotPassword/forms/SendEmail";
-import {Code} from "./pages/ForgotPassword/forms/Code"
+import { Code } from "./pages/ForgotPassword/forms/Code"
 import { Success } from "./components/SuccessPage";
 import { ForgotPassword } from "./pages/ForgotPassword";
 
@@ -19,11 +19,11 @@ export function Router() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/entrar" element={<Login />} />
-      <Route path="/cadastro" element={<Register />} />
       <Route path="/code" element={<Code />} />
+      <Route path="/cadastro" element={<Register />} />
       <Route path="/recuperar-senha" element={<ForgotPassword />}>
+        <Route path="code" element={<Code />} />
         <Route path="new-password" element={<NewPassword />} />
-        <Route path="send-password" element={<SendEmail />} />
         <Route path="send-password" element={<SendEmail />} />
         <Route
           path="success"

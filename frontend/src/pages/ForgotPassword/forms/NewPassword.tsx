@@ -10,7 +10,7 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
   };
 
   return (
-    <div className="flex-col justify-between items-center md:flex md:flex-row">
+    <div className="flex-col justify-between bg-background items-center md:flex md:flex-row">
       <div className="text-white">
         <p className="text-center font-extralight pt-6">
           Essa não! Sua conta está perdida?
@@ -28,8 +28,8 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
         </p>
       </div>
 
-      <div className="bg-background scroll-smooth pb-7 md:pb-0">
-        <div className="text-center md:pr-60">
+      <div className="scroll-smooth pb-7 md:pb-0">
+        <div className="text-center md:pr-48">
           <h2 className="text-orange font-medium text-3xl mb-10">
             Esqueceu a senha
           </h2>
@@ -44,7 +44,7 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
         </div>
 
         <form
-          className="flex flex-col font-extralight text-white px-9 md:px-0 md:mr-64"
+          className="flex flex-col font-extralight text-white px-9 md:px-0 md:mr-48"
           action="#"
           method="POST"
         >
@@ -71,7 +71,7 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
           <Button onClick={handleGoToSuccess}>Renovar senha</Button>
         </form>
 
-        <div className="text-center font-extralight mt-8 md:mr-64">
+        <div className="text-center font-extralight mt-8 md:mr-48">
           <p className="text-white">
             Ainda com problemas para recuperar sua conta?
           </p>
