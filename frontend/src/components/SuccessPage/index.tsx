@@ -21,7 +21,7 @@ export function Success({ text, title, titleButton }: SuccessProps) {
               alt="Lucas e seu bolo"
               className="ml-20 w-80 border-0 md:w-11/12 md:ml-0"
             />
-            <p className="font-medium pt-3 text-center mb-14 md:mb-0 md:pl-36">
+            <p className="font-medium pt-3 text-center mb-24 md:mb-0 md:pl-36">
               <span className="text-orange">Lucas</span> fez um bolo para
               comemorar esta ocasião
             </p>

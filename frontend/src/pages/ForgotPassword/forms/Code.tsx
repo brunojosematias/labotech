@@ -15,7 +15,7 @@ export function Code({
   };
 
   return (
-    <div className="flex-col justify-between items-center md:flex md:flex-row">
+    <div className="flex-col justify-between bg-background items-center md:flex md:flex-row">
       <div className="text-white">
         <p className="text-center font-extralight pt-6">
           Essa não! Sua conta está perdida?
@@ -33,26 +33,16 @@ export function Code({
         </p>
       </div>
 
-      <div className="bg-background scroll-smooth pb-7 md:pb-0">
-        <h2 className="text-orange font-medium text-3xl text-center mb-16 md:pr-60">
+      <div className="scroll-smooth pb-7 md:pb-0">
+        <h2 className="text-orange font-medium text-3xl text-center mb-16 md:mr-48">
           Esqueceu a senha
         </h2>
         <form
-          className="flex flex-col font-extralight text-white px-14 md:pl-0 md:pr-60"
+          className="flex flex-col font-extralight text-white px-14 md:px-0 md:pl-0 md:mr-48"
           action="#"
           method="POST"
         >
-          <input
-            type="email"
-            name="email"
-            placeholder="E-mail"
-            id="email"
-            autoComplete="email"
-            required
-            className="bg-background border rounded-3xl mb-3 py-3 pl-8 w-full focus:outline-none focus:border-orange transition-all"
-          />
-
-          <div className="flex gap-2 items-center mb-8">
+          <div className="flex gap-2 items-center mb-14">
             <input
               type="text"
               name="rescueCode"
@@ -71,7 +61,7 @@ export function Code({
           <Button onClick={handleRenewPassword}>Inserir nova senha</Button>
         </form>
 
-        <div className="text-center font-extralight mt-12 md:pr-60">
+        <div className="text-center font-extralight mt-12 md:mr-48">
           <p className="text-white">
             Ainda com problemas para recuperar sua conta?
           </p>

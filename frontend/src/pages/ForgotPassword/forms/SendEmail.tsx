@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 import { Button } from "../../../components/Button";
 
 export function SendEmail({
-  onGoToNewPassword,
+  onGoToCode,
 }: {
-  onGoToNewPassword?: () => void;
+  onGoToCode?: () => void;
 }) {
-  const handleRenewPassword = () => {
-    if (onGoToNewPassword) {
-      onGoToNewPassword();
+  const handleSendCode = () => {
+    if (onGoToCode) {
+      onGoToCode();
     }
   };
 
   return (
-    <div className="flex-col justify-between items-center md:flex md:flex-row">
+    <div className="flex-col justify-between bg-background items-center md:flex md:flex-row">
       <div className="text-white">
         <p className="text-center font-extralight pt-6">
           Essa não! Sua conta está perdida?
@@ -33,7 +33,7 @@ export function SendEmail({
         </p>
       </div>
 
-      <div className="bg-background scroll-smooth pb-7 md:pb-0">
+      <div className="scroll-smooth  pb-7 md:pb-0">
         <div className="text-center md:pr-60">
           <h2 className="text-orange font-medium text-3xl mb-16 md:mb-10">
             Esqueceu a senha
@@ -65,7 +65,7 @@ export function SendEmail({
             className="bg-background border rounded-3xl mb-8 py-3 pl-8 w-full focus:outline-none focus:border-orange transition-all"
           />
 
-          <Button onClick={handleRenewPassword}>Enviar código</Button>
+          <Button onClick={handleSendCode}>Enviar código</Button>
         </form>
 
         <div className="text-center font-extralight mt-8 md:pr-60">
