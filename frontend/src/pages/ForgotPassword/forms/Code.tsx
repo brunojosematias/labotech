@@ -34,11 +34,11 @@ export function Code({
       </div>
 
       <div className="scroll-smooth pb-7 md:pb-0">
-        <h2 className="text-orange font-medium text-3xl text-center mb-16 md:mr-48">
+        <h2 className="text-orange font-medium text-3xl text-center mb-16 md:mr-60">
           Esqueceu a senha
         </h2>
         <form
-          className="flex flex-col font-extralight text-white px-14 md:px-0 md:pl-0 md:mr-48"
+          className="flex flex-col font-extralight text-white px-14 md:px-0 md:pl-0 md:mr-60"
           action="#"
           method="POST"
         >
@@ -61,7 +61,7 @@ export function Code({
           <Button onClick={handleRenewPassword}>Inserir nova senha</Button>
         </form>
 
-        <div className="text-center font-extralight mt-12 md:mr-48">
+        <div className="text-center font-extralight mt-12 md:mr-60">
           <p className="text-white">
             Ainda com problemas para recuperar sua conta?
           </p>

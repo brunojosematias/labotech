@@ -62,7 +62,7 @@ export function SendEmail({
             id="email"
             autoComplete="email"
             required
-            className="bg-background border rounded-3xl mb-8 py-3 pl-8 w-full focus:outline-none focus:border-orange transition-all"
+            className="bg-background border rounded-3xl mb-8 py-3 pl-8 w-full md:w-96 focus:outline-none focus:border-orange transition-all"
           />
 
           <Button onClick={handleSendCode}>Enviar código</Button>

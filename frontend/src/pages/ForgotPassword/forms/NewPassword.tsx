@@ -29,7 +29,7 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
       </div>
 
       <div className="scroll-smooth pb-7 md:pb-0">
-        <div className="text-center md:pr-48">
+        <div className="text-center md:pr-60">
           <h2 className="text-orange font-medium text-3xl mb-10">
             Esqueceu a senha
           </h2>
@@ -44,7 +44,7 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
         </div>
 
         <form
-          className="flex flex-col font-extralight text-white px-9 md:px-0 md:mr-48"
+          className="flex flex-col font-extralight text-white px-9 md:px-0 md:mr-60"
           action="#"
           method="POST"
         >
@@ -62,7 +62,6 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
             type="password"
             name="password"
             placeholder="Confirme sua nova senha"
-            // id="password"
             autoComplete="current-password"
             required
             className="bg-background border rounded-3xl mb-10 py-3 pl-8 pr-2 md:w-96 focus:outline-none focus:border-orange transition-all"
@@ -71,7 +70,7 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
           <Button onClick={handleGoToSuccess}>Renovar senha</Button>
         </form>
 
-        <div className="text-center font-extralight mt-8 md:mr-48">
+        <div className="text-center font-extralight mt-8 md:mr-60">
           <p className="text-white">
             Ainda com problemas para recuperar sua conta?
           </p>
