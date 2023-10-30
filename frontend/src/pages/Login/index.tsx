@@ -123,7 +123,7 @@ export function Login() {
                     </div>
                   }
 
-                  <div className="text-white underline font-bold ml-48  md:pr-2 md:ml-24 hover:text-orange">
+                  <div className="text-white underline font-bold ml-48 md:ml-24 hover:text-orange">
                     <a href="/recuperar-senha">Esqueceu a senha?</a>
                   </div>
                 </div>
