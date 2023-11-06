@@ -170,7 +170,7 @@ export function Register() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col font-medium text-white  ">
+                  <div className="flex flex-col font-medium text-white">
                     <div className="mb-4">
                       <input
                         type="email"
