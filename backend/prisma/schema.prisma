@@ -17,7 +17,8 @@ model User {
   surname            String
   email              String               @unique
   password           String
-  avatar             String?
+  avatar             String?            
+  verification_code  String?      
   created_at         DateTime             @default(now())
   AnamnesisForm      AnamnesisForm[]
   refresh_token      RefreshToken[]

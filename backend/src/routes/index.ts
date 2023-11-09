@@ -7,7 +7,8 @@ import { usersRouter } from "./users.routes";
 
 const router = Router();
 
-router.use(usersRouter);
+router.use(usersRouter)
+router.use(authenticateRoutes);
 router.use(exerciseRoutes);
 router.use(anamnesisRouter);
 router.use(completedExercisesRouter);
