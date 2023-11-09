@@ -1,5 +1,12 @@
 {
-  "devDependencies": {
-    "@types/nodemailer": "^6.4.11"
-  }
+  "name": "labotech",
+  "version": "1.0.0",
+  "description": "```bash\t\r git clone git@github.com:brunojosematias/labotech.git\t\r ```",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
