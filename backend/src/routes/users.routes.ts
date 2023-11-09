@@ -53,3 +53,4 @@ usersRouter.get("/send-email", async (req, res) => {
 
 })
 
+export {usersRouter}

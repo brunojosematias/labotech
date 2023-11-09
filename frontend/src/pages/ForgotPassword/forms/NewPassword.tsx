@@ -23,7 +23,10 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
     setErrors({ ...errors, confirmPassword: "" });
   };
 
-  const handleGoToSuccess = () => {
+  const handleGoToSuccess = (event: ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    console.log(errors)
+
     if (!password) {
       setErrors({ ...errors, password: "A senha é obrigatória" });
     }
@@ -84,8 +87,8 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
 
         <form
           className="flex flex-col font-extralight text-white px-9 md:px-0 md:mr-60"
-          action="#"
-          method="POST"
+          noValidate
+          onSubmit={handleGoToSuccess}
         >
           <div className="font-medium">
             <input
@@ -109,12 +112,12 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
           <div className="mb-4 font-medium">
           <input
             type="password"
-            name="password"
+            name="confirmPassword"
             placeholder="Confirme sua nova senha"
             autoComplete="current-password"
             required
-                          value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
             className={`bg-background border rounded-3xl mb-10 py-3 pl-8 pr-2 md:w-96 focus:outline-none focus-border-orange transition-all ${
               errors.confirmPassword ? "border-red-500" : ""
             }`}
@@ -124,7 +127,7 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
           )}
           </div>
 
-          <Button onClick={handleGoToSuccess}>Renovar senha</Button>
+          <Button>Renovar senha</Button>
         </form>
 
         <div className="text-center font-extralight mt-8 md:mr-60">

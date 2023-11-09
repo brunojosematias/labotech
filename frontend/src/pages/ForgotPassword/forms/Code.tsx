@@ -6,7 +6,11 @@ import { ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../../../components/Button";
 
-export function Code({ onGoToNewPassword }: { onGoToNewPassword?: () => void }) {
+export function Code({
+  onGoToNewPassword,
+}: {
+  onGoToNewPassword?: () => void;
+}) {
   const [rescueCode, setRescueCode] = useState("");
   const [errors, setErrors] = useState({ rescueCode: "" });
 
@@ -74,7 +78,9 @@ export function Code({ onGoToNewPassword }: { onGoToNewPassword?: () => void }) 
                 errors.rescueCode ? "border-red-500 focus:border-red-500" : ""
               }`}
             />
-            {errors.rescueCode && <p className="text-red-500">{errors.rescueCode}</p>}
+            {errors.rescueCode && (
+              <p className="text-red-500 block">{errors.rescueCode}</p>
+            )}
 
             <div className="w-48 md:w-44">
               <Button>Verificar</Button>
