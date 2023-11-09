@@ -135,7 +135,7 @@ export function Register() {
                       <input
                         type="nome"
                         name="nome"
-                        placeholder="Nome*"
+                        placeholder="Nome"
                         id="nome"
                         autoComplete="nome"
                         required
@@ -154,7 +154,7 @@ export function Register() {
                       <input
                         type="sobrenome"
                         name="sobrenome"
-                        placeholder="Sobrenome*"
+                        placeholder="Sobrenome"
                         id="sobrenome"
                         autoComplete="sobrenome"
                         required
@@ -170,12 +170,12 @@ export function Register() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col font-medium text-white  ">
+                  <div className="flex flex-col font-medium text-white">
                     <div className="mb-4">
                       <input
                         type="email"
                         name="email"
-                        placeholder="E-mail*"
+                        placeholder="E-mail"
                         id="email"
                         autoComplete="email"
                         required
@@ -196,7 +196,7 @@ export function Register() {
                       <input
                         type="password"
                         name="password"
-                        placeholder="Senha*"
+                        placeholder="Senha"
                         id="password"
                         autoComplete="current-password"
                         required

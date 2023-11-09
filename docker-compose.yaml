@@ -3,13 +3,25 @@ version: "3"
 
 # "services" define os três containers que fazem parte da aplicação (backend, frontend e db)
 services:
+  backend:
+    image: node:20 
+    container_name: api
+    working_dir: /src/
+    depends_on:
+      - db
+    volumes: 
+      - ./backend:/src/
+    ports: 
+      - "3333:3333"
+    command: npm run dev
+
   # backend:
   #   # Imagem do Docker Hub para criar um container Node.jsSj
-  #   image: node:latest
+  #   image: node:16-alpine3.17
   #   container_name: backend-container
   #   build:
   #     context: ./backend
-  #     dockerfile: ./backend/Dockerfile
+  #     dockerfile: ./Dockerfile
 
   #   # "volumes" mapeia a pasta ./backend do host para /home/node/app dentro do container
   #   volumes:
@@ -18,30 +30,15 @@ services:
   #   ports:
   #     - "3333:3333"
   #   depends_on:
-  #     - postgres_primary
+  #     - db
   #   networks:
   #     - sd_kawi
   #   environment:
   #     - DATABASE_URL=postgres://root:root@database/labotech?schema=public
   #   # Comando para iniciar o servidor Node.js
   #   command: npm run dev
-  #   restart: unless-stopped
-
-  backend:
-    image: node:20
-    container_name: backend-container
-    working_dir: /src/
-    depends_on:
-      - postgres_primary
-    volumes:
-      - ./backend:/src/
-    ports:
-      - "3333:3333"
-    command: npm run dev
-    
-
-
-
+  
+    restart: unless-stopped
 
   frontend:
     image: node:latest
@@ -86,7 +83,8 @@ services:
 
   # Volumes são usados para persistência de dados entre contêineres e reinicializações
 volumes:
-  postgres_data: # Este arquivo de composição Docker Compose cria três contêineres: um para o backend, um para o frontend e um para o banco de dados PostgreSQL. Esses contêineres são interconectados e configurados para executar os serviços Node.js e o banco de dados PostgreSQL.
+  postgres_data:
+  
 networks:
   sd_kawi:
     driver: bridge
