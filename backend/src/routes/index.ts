@@ -1,3 +1,4 @@
+
 import { Router } from "express";
 import { anamnesisRouter } from "./anamnesisForm.routes";
 import { authenticateRoutes } from "./authenticate.routes";
@@ -12,6 +13,5 @@ router.use(authenticateRoutes);
 router.use(exerciseRoutes);
 router.use(anamnesisRouter);
 router.use(completedExercisesRouter);
-// router.use(authenticateRoutes);
 
 export { router };

@@ -1,29 +1,17 @@
-import arthur from "../../../assets/images/arthur.svg";
 
-import { useState } from "react";
-import { ChangeEvent } from "react";
+import arthur from "../../../assets/images/arthur.svg";
 
 import { Link } from "react-router-dom";
 import { Button } from "../../../components/Button";
 
-export function SendEmail({ onGoToCode }: { onGoToCode?: () => void }) {
-  const [email, setEmail] = useState("");
-  const [errors, setErrors] = useState({ email: "" });
-
-  const handleEmail = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-    setErrors({ email: "" });
-  };
-
+export function SendEmail({
+  onGoToCode,
+}: {
+  onGoToCode?: () => void;
+}) {
   const handleSendCode = () => {
-    if (!email) {
-      setErrors({ email: "O email é obrigatório" });
-    } else {
-      setErrors({ email: "" });
-
-      if (onGoToCode) {
-        onGoToCode();
-      }
+    if (onGoToCode) {
+      onGoToCode();
     }
   };
 
@@ -57,8 +45,9 @@ export function SendEmail({ onGoToCode }: { onGoToCode?: () => void }) {
             <br />
             <span className="text-orange">
               Informe seu e-mail, assim, <br />
-              mandaremos um código de resgate.
+              mandaremos um código de resgate
             </span>
+            .
           </p>
         </div>
 
@@ -67,7 +56,6 @@ export function SendEmail({ onGoToCode }: { onGoToCode?: () => void }) {
           action="#"
           method="POST"
         >
-          <div className="mb-4 font-medium">
           <input
             type="email"
             name="email"
@@ -75,15 +63,8 @@ export function SendEmail({ onGoToCode }: { onGoToCode?: () => void }) {
             id="email"
             autoComplete="email"
             required
-            value={email}
-            onChange={handleEmail}
-            className={`bg-background border rounded-3xl mb-8 py-3 pl-8 w-full md:w-96 focus:outline-none focus:border-orange transition-all ${
-              errors.email ? "border-red-500 focus:border-red-500" : ""
-            }`}
+            className="bg-background border rounded-3xl mb-8 py-3 pl-8 w-full md:w-96 focus:outline-none focus:border-orange transition-all"
           />
-
-          {errors.email && <p className="text-red-500">{errors.email}</p>}
-          </div>
 
           <Button onClick={handleSendCode}>Enviar código</Button>
         </form>

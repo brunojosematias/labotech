@@ -1,3 +1,4 @@
+
 # Define a versão do Docker Compose que está sendo usada
 version: "3"
 

@@ -1,3 +1,4 @@
+
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -16,31 +17,13 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Estado para controlar o loading
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
 
   function handleEmail(event: ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value;
-    setEmail(value);
-  
-    if (!value) {
-      setErrors({ ...errors, email: "O e-mail é obrigatório" });
-    } else {
-      setErrors({ ...errors, email: "" });
-    }
+    setEmail(event.target.value);
   }
 
   function handlePassword(event: ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value;
-    setPassword(value);
-  
-    if (!value) {
-      setErrors({ ...errors, password: "A senha é obrigatória" });
-    } else {
-      setErrors({ ...errors, password: "" });
-    }
+    setPassword(event.target.value);
   }
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
@@ -115,13 +98,8 @@ export function Login() {
                   required
                   value={email}
                   onChange={handleEmail}
-                  className={`bg-background border rounded-3xl mb-7 py-3 pl-8 w-full md:w-96 focus:outline-none focus:border-orange transition-all ${
-                    errors.email ? "border-red-500 focus:border-red-500" : ""
-                  }`}
+                  className="bg-background border rounded-3xl mb-7 py-3 pl-8 focus:outline-none focus:border-orange transition-all"
                 />
-      
-                {errors.email && <p className="text-red-500">{errors.email}</p>}
-
                 <input
                   type="password"
                   name="password"
@@ -131,13 +109,8 @@ export function Login() {
                   required
                   value={password}
                   onChange={handlePassword}
-                  className={`bg-background border rounded-3xl mb-4 py-3 pl-8 pr-2 focus:outline-none focus:border-orange transition-all ${
-                    errors.password ? "border-red-500 focus:border-red-500" : ""
-                  }`}
-                />
-                {errors.password && (
-                  <p className="text-red-500">{errors.password}</p>
-                )}
+                  className="bg-background border rounded-3xl mb-4 py-3 pl-8 pr-2 focus:outline-none focus:border-orange transition-all"
+                />{" "}
                 <div className="flex">
                   {
                     <div className="text-white font-extralight flex items-center outline-none">
