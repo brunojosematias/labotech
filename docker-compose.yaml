@@ -8,7 +8,13 @@ services:
     container_name: api
     working_dir: /src/
     depends_on:
-      - db
+      -  postgresql-master
+    environment:
+      # - DATABASE_URL=postgres://root:root@database/labotech?schema=public
+      # - DATABASE_URL=postgres://root:root@postgres_primary/labotech?schema=public
+     DATABASE_URL: postgres://postgres:postgres@/labotech?schema=public
+
+
     volumes: 
       - ./backend:/src/
     ports: 
@@ -52,38 +58,78 @@ services:
       - backend
     command: npm run dev --host 0.0.0.0
 
-  postgres_primary:
-    # Imagem do Docker Hub para criar um container do PostgreSQL
-    image: postgres:latest
-    container_name: labotech-postgres-primary
-    # Configuração das variáveis de ambiente relacionadas ao PostgreSQL
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: labotech
+  # postgres_primary:
+  #   # Imagem do Docker Hub para criar um container do PostgreSQL
+  #   image: 'bitnami/postgresql:latest'
+  #   container_name: labotech-postgres-primary
+  #   # Configuração das variáveis de ambiente relacionadas ao PostgreSQL
+  #   environment:
+  #     POSTGRES_USER: root
+  #     POSTGRES_PASSWORD: root
+  #     # POSTGRES_DB: labotech
+  #     POSTGRES_HOST_AUTH_METHOD: trust  # Permitir conexões confiáveis
+  #     POSTGRES_REPLICATION: true
+  #   ports:
+  #     - '5432:5432'
+  #   networks:
+  #     - sd_kawi
+
+  # postgres_replica:
+  #   image: 'bitnami/postgresql:latest'
+  #   container_name: labotech-postgres-replica
+  #   environment:
+  #     POSTGRES_USER: root
+  #     POSTGRES_PASSWORD: root
+  #     # POSTGRES_DB: labotech
+  #     POSTGRES_MASTER_HOST: postgres_primary
+  #     POSTGRES_REPLICATION: true
+  #     POSTGRES_HOST_AUTH_METHOD: trust  # Permitir conexões confiáveis
+  #   ports:
+  #     - '5432'
+  #   networks:
+  #     - sd_kawi
+
+  postgresql-master:
+    image: bitnami/postgresql
+    restart: always
     ports:
-      - "5432:5432"
-    networks:
-      - sd_kawi
-
-  postgres_replica:
-    image: postgres:latest
-    container_name: labotech-postgres-replica
+      - '5432:5432'
+    volumes:
+      - postgresql_master_data:/bitnami/postgresql
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: labotech
-      POSTGRES_MASTER_HOST: postgres_primary
-      POSTGRES_REPLICATION: true
-    networks:
-      - sd_kawi
+      - POSTGRESQL_PGAUDIT_LOG=READ,WRITE
+      - POSTGRESQL_LOG_HOSTNAME=true
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=repl_user
+      - POSTGRESQL_USERNAME=my_user
+      - POSTGRESQL_PASSWORD=my_password
+      - POSTGRESQL_DATABASE=labotech
+      - ALLOW_EMPTY_PASSWORD=yes
 
-    # command: ["./configure-replication.sh"]
+  postgresql-slave:
+    image: bitnami/postgresql
+    restart: always
+    ports:
+      - '5433:5432'
+    depends_on:
+      - postgresql-master
+    environment:
+      - POSTGRESQL_PASSWORD=postgres
+      - POSTGRESQL_MASTER_HOST=postgresql-master
+      - POSTGRESQL_PGAUDIT_LOG=READ
+      - POSTGRESQL_LOG_HOSTNAME=true
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=repl_user
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+      - ALLOW_EMPTY_PASSWORD=yes
 
 
-  # Volumes são usados para persistência de dados entre contêineres e reinicializações
 volumes:
-  postgres_data:
+  postgresql_master_data:
+
   
 networks:
   sd_kawi:

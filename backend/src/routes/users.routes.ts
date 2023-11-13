@@ -82,8 +82,6 @@ usersRouter.patch("/send-email/:id", async (request, response) => {
 
 })
 
-<<<<<<< HEAD
-=======
 usersRouter.patch('/new-password/:id', async (request, response) => {
   const { id } = request.params;
   const { password, verification_code} = request.body;
@@ -111,5 +109,4 @@ usersRouter.patch('/new-password/:id', async (request, response) => {
 
 })
 
->>>>>>> origin
 export {usersRouter}
