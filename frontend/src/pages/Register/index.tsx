@@ -1,3 +1,4 @@
+
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -308,3 +309,4 @@ export function Register() {
 }
 
 export default Register;
+

@@ -1,3 +1,4 @@
+
 import { Router } from "express";
 import { anamnesisRouter } from "./anamnesisForm.routes";
 import { authenticateRoutes } from "./authenticate.routes";
