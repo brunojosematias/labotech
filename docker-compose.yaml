@@ -6,43 +6,19 @@ version: "3"
 services:
   backend:
     image: node:20 
-    container_name: api
+    container_name: backend
     working_dir: /src/
     depends_on:
-      - db
+      - postgresql-master
     volumes: 
       - ./backend:/src/
     ports: 
       - "3333:3333"
     command: npm run dev
-
-  # backend:
-  #   # Imagem do Docker Hub para criar um container Node.jsSj
-  #   image: node:16-alpine3.17
-  #   container_name: backend-container
-  #   build:
-  #     context: ./backend
-  #     dockerfile: ./Dockerfile
-
-  #   # "volumes" mapeia a pasta ./backend do host para /home/node/app dentro do container
-  #   volumes:
-  #     - ./backend:/home/node/app
-  #   # Expõe a porta '3333' do contêiner para a porta '3333' do host
-  #   ports:
-  #     - "3333:3333"
-  #   depends_on:
-  #     - db
-  #   networks:
-  #     - sd_kawi
-  #   environment:
-  #     - DATABASE_URL=postgres://root:root@database/labotech?schema=public
-  #   # Comando para iniciar o servidor Node.js
-  #   command: npm run dev
-  
     restart: unless-stopped
 
   frontend:
-    image: node:16-alpine3.17
+    image: node:20
     container_name: frontend-container
     working_dir: /home/node/app
     volumes:
@@ -53,22 +29,35 @@ services:
       - backend
     command: npm run dev --host 0.0.0.0
 
-  db:
-    # Imagem do Docker Hub para criar um container do PostgreSQL
-    image: postgres:latest
-    container_name: labotech-postgres
-    # Configuração das variáveis de ambiente relacionadas ao PostgreSQL
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
+  postgresql-master:
+    image: 'bitnami/postgresql:latest'
     ports:
-      - "5432:5432"
-    networks:
-      - sd_kawi
+      - '5432:5432'
+    volumes:
+      - 'postgresql_master_data:/bitnami/postgresql'
+    environment:
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=repl_password
+      - POSTGRESQL_USERNAME=my_user
+      - POSTGRESQL_PASSWORD=my_password
+      - POSTGRESQL_DATABASE=my_database
+  postgresql-slave:
+    image: 'bitnami/postgresql:latest'
+    ports:
+      - '5433:5432'
+    depends_on:
+      - postgresql-master
+    environment:
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=repl_password
+      - POSTGRESQL_MASTER_HOST=postgresql-master
+      - POSTGRESQL_PASSWORD=my_password
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
 
-# Volumes são usados para persistência de dados entre contêineres e reinicializações
 volumes:
-  postgres_data:
+  postgresql_master_data:
   
 networks:
   sd_kawi:
