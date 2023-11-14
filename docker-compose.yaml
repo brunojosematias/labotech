@@ -1,6 +1,33 @@
-version: '2'
+# Define a versão do Docker Compose que está sendo usada
+version: "3"
 
+# "services" define os containers que fazem parte da aplicação (backend, frontend e db)
 services:
+  backend:
+    image: node:20 
+    container_name: backend
+    working_dir: /src/
+    depends_on:
+      - postgresql-master
+    volumes: 
+      - ./backend:/src/
+    ports: 
+      - "3333:3333"
+    command: npm run dev
+    restart: unless-stopped
+
+  frontend:
+    image: node:20
+    container_name: frontend-container
+    working_dir: /home/node/app
+    volumes:
+      - ./frontend:/home/node/app
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    command: npm run dev --host 0.0.0.0
+
   postgresql-master:
     image: 'bitnami/postgresql:latest'
     ports:
@@ -30,3 +57,7 @@ services:
 
 volumes:
   postgresql_master_data:
+  
+networks:
+  sd_kawi:
+    driver: bridge
