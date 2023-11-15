@@ -14,7 +14,7 @@ services:
       - ./backend:/src/
     ports: 
       - "3333:3333"
-    command: npm run dev
+    command: bash -c "npm run dev && npx prisma migrate dev"
     restart: unless-stopped
     environment:
       - DATABASE_URL=postgresql://my_user:my_password@postgresql-master:5432/my_database
