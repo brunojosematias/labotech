@@ -1,17 +1,69 @@
-
 import arthur from "../../../assets/images/arthur.svg";
+
+import { useState } from "react";
+import { ChangeEvent } from "react";
 
 import { Button } from "../../../components/Button";
 
 export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
-  const handleGoToSuccess = () => {
-    if (onGoToSuccess) {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState({
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+    setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
+  };
+
+  const handleConfirmPasswordChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const newConfirmPassword = event.target.value;
+    setConfirmPassword(newConfirmPassword);
+    setErrors((prevErrors) => ({ ...prevErrors, confirmPassword: "" }));
+  };
+
+  const handleGoToSuccess = (event: ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(errors);
+
+    let hasError = false;
+
+    if (!password) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "A senha é obrigatória",
+      }));
+      hasError = true;
+    }
+
+    if (!confirmPassword) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        confirmPassword: "A confirmação de senha é obrigatória",
+      }));
+      hasError = true;
+    }
+
+    if (password !== confirmPassword) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        confirmPassword: "As senhas não coincidem",
+      }));
+      hasError = true;
+    }
+
+    if (!hasError && onGoToSuccess) {
       onGoToSuccess();
     }
   };
 
   return (
-    <div className="flex-col justify-between bg-background items-center md:flex md:flex-row">
+    <div className="flex-col justify-between items-center md:flex md:flex-row">
       <div className="text-white">
         <p className="text-center font-extralight pt-6">
           Essa não! Sua conta está perdida?
@@ -35,40 +87,66 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
             Esqueceu a senha
           </h2>
           <div className="font-medium mb-8">
-          <p className="text-orange text-2xl mb-3">Sucesso!</p>
-          <p className="text-white"> 
-            Código confirmado!
-            <br />
-            Agora, redefina sua senha.
-          </p>
+            <p className="text-orange text-2xl mb-3">Sucesso!</p>
+            <p className="text-white">
+              Código confirmado!
+              <br />
+              Agora, redefina sua senha.
+            </p>
           </div>
         </div>
 
         <form
           className="flex flex-col font-extralight text-white px-9 md:px-0 md:mr-60"
-          action="#"
-          method="POST"
+          noValidate
+          onSubmit={handleGoToSuccess}
         >
-          <input
-            type="password"
-            name="password"
-            placeholder="Insira sua nova senha"
-            id="password"
-            autoComplete="current-password"
-            required
-            className="bg-background border rounded-3xl mb-6 py-3 pl-8 pr-2 md:w-96 focus:outline-none focus:border-orange transition-all"
-          />
+          <div className="font-medium mb-6">
+            <div className="relative">
+              <input
+                type="password"
+                name="password"
+                placeholder="Insira sua nova senha"
+                id="password"
+                autoComplete="current-password"
+                required
+                value={password}
+                onChange={handlePasswordChange}
+                className={`bg-background border rounded-3xl py-3 pl-8 pr-2 md:w-96 focus:outline-none focus-border-orange transition-all ${
+                  errors.password ? "border-red-500 focus:border-red-500" : ""
+                }`}
+              />
+              {errors.password && (
+                <p className="text-red-500 absolute bottom-[-22px]">
+                  {errors.password}
+                </p>
+              )}
+            </div>
+          </div>
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Confirme sua nova senha"
-            autoComplete="current-password"
-            required
-            className="bg-background border rounded-3xl mb-10 py-3 pl-8 pr-2 md:w-96 focus:outline-none focus:border-orange transition-all"
-          />
+          <div className="font-medium mb-10">
+            <div className="relative">
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirme sua nova senha"
+                autoComplete="current-password"
+                required
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                className={`bg-background border rounded-3xl py-3 pl-8 pr-2 md:w-96 focus:outline-none focus-border-orange transition-all ${
+                  errors.confirmPassword ? "border-red-500" : ""
+                }`}
+              />
+              {errors.confirmPassword && (
+                <p className="text-red-500 absolute bottom-[-22px]">
+                  {errors.confirmPassword}
+                </p>
+              )}
+            </div>
+          </div>
 
-          <Button onClick={handleGoToSuccess}>Renovar senha</Button>
+          <Button>Renovar senha</Button>
         </form>
 
         <div className="text-center font-extralight mt-8 md:mr-60">

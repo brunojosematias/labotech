@@ -1,4 +1,3 @@
-
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -17,17 +16,29 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Estado para controlar o loading
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   function handleEmail(event: ChangeEvent<HTMLInputElement>) {
     setEmail(event.target.value);
+    setEmailError("");
   }
 
   function handlePassword(event: ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value);
+    setPasswordError("");
   }
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!email) {
+      setEmailError("Por favor, preencha o campo de e-mail.");
+    }
+
+    if (!password) {
+      setPasswordError("Por favor, preencha o campo de senha.");
+    }
 
     if (email && password) {
       setIsLoading(true);
@@ -100,6 +111,9 @@ export function Login() {
                   onChange={handleEmail}
                   className="bg-background border rounded-3xl mb-7 py-3 pl-8 focus:outline-none focus:border-orange transition-all"
                 />
+                {emailError && (
+                  <p className="text-red-500 ml-2 mb-2">{emailError}</p>
+                )}
                 <input
                   type="password"
                   name="password"
@@ -111,6 +125,9 @@ export function Login() {
                   onChange={handlePassword}
                   className="bg-background border rounded-3xl mb-4 py-3 pl-8 pr-2 focus:outline-none focus:border-orange transition-all"
                 />{" "}
+                {passwordError && (
+                  <p className="text-red-500 ml-2 mb-2">{passwordError}</p>
+                )}
                 <div className="flex">
                   {
                     <div className="text-white font-extralight flex items-center outline-none">
