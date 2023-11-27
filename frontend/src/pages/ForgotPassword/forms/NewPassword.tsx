@@ -14,40 +14,51 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
   });
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-    setErrors({ ...errors, password: "" });
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+    setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
   };
 
-  const handleConfirmPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setConfirmPassword(event.target.value);
-    setErrors({ ...errors, confirmPassword: "" });
+  const handleConfirmPasswordChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const newConfirmPassword = event.target.value;
+    setConfirmPassword(newConfirmPassword);
+    setErrors((prevErrors) => ({ ...prevErrors, confirmPassword: "" }));
   };
 
   const handleGoToSuccess = (event: ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    console.log(errors)
+    event.preventDefault();
+    console.log(errors);
+
+    let hasError = false;
 
     if (!password) {
-      setErrors({ ...errors, password: "A senha é obrigatória" });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "A senha é obrigatória",
+      }));
+      hasError = true;
     }
 
     if (!confirmPassword) {
-      setErrors({
-        ...errors,
+      setErrors((prevErrors) => ({
+        ...prevErrors,
         confirmPassword: "A confirmação de senha é obrigatória",
-      });
+      }));
+      hasError = true;
     }
 
     if (password !== confirmPassword) {
-      setErrors({ ...errors, confirmPassword: "As senhas não coincidem" });
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        confirmPassword: "As senhas não coincidem",
+      }));
+      hasError = true;
     }
 
-    if (password && confirmPassword && password === confirmPassword) {
-      setErrors({ password: "", confirmPassword: "" });
-
-      if (onGoToSuccess) {
-        onGoToSuccess();
-      }
+    if (!hasError && onGoToSuccess) {
+      onGoToSuccess();
     }
   };
 
@@ -90,41 +101,49 @@ export function NewPassword({ onGoToSuccess }: { onGoToSuccess?: () => void }) {
           noValidate
           onSubmit={handleGoToSuccess}
         >
-          <div className="font-medium">
-            <input
-              type="password"
-              name="password"
-              placeholder="Insira sua nova senha"
-              id="password"
-              autoComplete="current-password"
-              required
-              value={password}
-              onChange={handlePasswordChange}
-              className={`bg-background border rounded-3xl mb-6 py-3 pl-8 pr-2 md:w-96 focus:outline-none focus-border-orange transition-all ${
-                errors.password ? "border-red-500 focus:border-red-500" : ""
-              }`}
-            />
-            {errors.password && (
-              <p className="text-red-500">{errors.password}</p>
-            )}
+          <div className="font-medium mb-6">
+            <div className="relative">
+              <input
+                type="password"
+                name="password"
+                placeholder="Insira sua nova senha"
+                id="password"
+                autoComplete="current-password"
+                required
+                value={password}
+                onChange={handlePasswordChange}
+                className={`bg-background border rounded-3xl py-3 pl-8 pr-2 md:w-96 focus:outline-none focus-border-orange transition-all ${
+                  errors.password ? "border-red-500 focus:border-red-500" : ""
+                }`}
+              />
+              {errors.password && (
+                <p className="text-red-500 absolute bottom-[-22px]">
+                  {errors.password}
+                </p>
+              )}
+            </div>
           </div>
 
-          <div className="mb-4 font-medium">
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirme sua nova senha"
-            autoComplete="current-password"
-            required
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
-            className={`bg-background border rounded-3xl mb-10 py-3 pl-8 pr-2 md:w-96 focus:outline-none focus-border-orange transition-all ${
-              errors.confirmPassword ? "border-red-500" : ""
-            }`}
-          />
-          {errors.confirmPassword && (
-            <p className="text-red-500">{errors.confirmPassword}</p>
-          )}
+          <div className="font-medium mb-10">
+            <div className="relative">
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirme sua nova senha"
+                autoComplete="current-password"
+                required
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                className={`bg-background border rounded-3xl py-3 pl-8 pr-2 md:w-96 focus:outline-none focus-border-orange transition-all ${
+                  errors.confirmPassword ? "border-red-500" : ""
+                }`}
+              />
+              {errors.confirmPassword && (
+                <p className="text-red-500 absolute bottom-[-22px]">
+                  {errors.confirmPassword}
+                </p>
+              )}
+            </div>
           </div>
 
           <Button>Renovar senha</Button>

@@ -16,35 +16,29 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Estado para controlar o loading
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   function handleEmail(event: ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value;
-    setEmail(value);
-  
-    if (!value) {
-      setErrors({ ...errors, email: "O e-mail é obrigatório" });
-    } else {
-      setErrors({ ...errors, email: "" });
-    }
+    setEmail(event.target.value);
+    setEmailError("");
   }
 
   function handlePassword(event: ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value;
-    setPassword(value);
-  
-    if (!value) {
-      setErrors({ ...errors, password: "A senha é obrigatória" });
-    } else {
-      setErrors({ ...errors, password: "" });
-    }
+    setPassword(event.target.value);
+    setPasswordError("");
   }
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!email) {
+      setEmailError("Por favor, preencha o campo de e-mail.");
+    }
+
+    if (!password) {
+      setPasswordError("Por favor, preencha o campo de senha.");
+    }
 
     if (email && password) {
       setIsLoading(true);
@@ -115,13 +109,11 @@ export function Login() {
                   required
                   value={email}
                   onChange={handleEmail}
-                  className={`bg-background border rounded-3xl mb-7 py-3 pl-8 w-full md:w-96 focus:outline-none focus:border-orange transition-all ${
-                    errors.email ? "border-red-500 focus:border-red-500" : ""
-                  }`}
+                  className="bg-background border rounded-3xl mb-7 py-3 pl-8 focus:outline-none focus:border-orange transition-all"
                 />
-      
-                {errors.email && <p className="text-red-500">{errors.email}</p>}
-
+                {emailError && (
+                  <p className="text-red-500 ml-2 mb-2">{emailError}</p>
+                )}
                 <input
                   type="password"
                   name="password"
@@ -131,12 +123,10 @@ export function Login() {
                   required
                   value={password}
                   onChange={handlePassword}
-                  className={`bg-background border rounded-3xl mb-4 py-3 pl-8 pr-2 focus:outline-none focus:border-orange transition-all ${
-                    errors.password ? "border-red-500 focus:border-red-500" : ""
-                  }`}
-                />
-                {errors.password && (
-                  <p className="text-red-500">{errors.password}</p>
+                  className="bg-background border rounded-3xl mb-4 py-3 pl-8 pr-2 focus:outline-none focus:border-orange transition-all"
+                />{" "}
+                {passwordError && (
+                  <p className="text-red-500 ml-2 mb-2">{passwordError}</p>
                 )}
                 <div className="flex">
                   {

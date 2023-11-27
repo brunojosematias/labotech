@@ -64,23 +64,27 @@ export function Code({
           action="#"
           method="POST"
         >
-          <div className="flex gap-2 items-center mb-14">
-            <input
-              type="text"
-              name="rescueCode"
-              placeholder="Código de Resgate"
-              id="rescueCode"
-              pattern="\d{6}"
-              required
-              value={rescueCode}
-              onChange={handleRescueCodeChange}
-              className={`bg-background border rounded-3xl w-52 py-3 pl-5 focus:outline-none focus:border-orange transition-all ${
-                errors.rescueCode ? "border-red-500 focus:border-red-500" : ""
-              }`}
-            />
-            {errors.rescueCode && (
-              <p className="text-red-500 block">{errors.rescueCode}</p>
-            )}
+          <div className="flex items-center mb-14">
+            <div className="flex flex-col mr-2 w-52">
+              <input
+                type="text"
+                name="rescueCode"
+                placeholder="Código de Resgate"
+                id="rescueCode"
+                pattern="\d{6}"
+                required
+                value={rescueCode}
+                onChange={handleRescueCodeChange}
+                className={`bg-background border rounded-3xl py-3 pl-5 focus:outline-none focus:border-orange transition-all ${
+                  errors.rescueCode ? "border-red-500 focus:border-red-500" : ""
+                }`}
+              />
+              <div className="block pt-2" style={{ height: "0.5rem" }}>
+                {errors.rescueCode && (
+                  <p className="text-red-500 font-bold">{errors.rescueCode}</p>
+                )}
+              </div>
+            </div>
 
             <div className="w-48 md:w-44">
               <Button>Verificar</Button>
