@@ -1,6 +1,6 @@
 
 # Define a versão do Docker Compose que está sendo usada
-version: "3"
+version: "3.8"
 
 # "services" define os containers que fazem parte da aplicação (backend, frontend e db)
 services:
