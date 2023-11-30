@@ -220,7 +220,7 @@ export function InitExercice() {
           <div className="bg-cinza_claro flex justify-center items-center mt-28 h-[400px] w-[500px] rounded-[40px] md:h-[500px] md:w-[1100px] md:mt-0">
             <img
               className="h-96 w-96 md:h-[30rem] md:w-[30rem]"
-              src={`http://localhost:3333/exercises/${exercisesCompleted[indexExerciseCompleted]?.demonstration}`}
+              src={`http://localhost:30/exercises/${exercisesCompleted[indexExerciseCompleted]?.demonstration}`}
               alt=""
             />
           </div>

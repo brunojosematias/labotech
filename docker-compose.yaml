@@ -13,11 +13,33 @@ services:
       - ./backend:/home/node/app
     # Expõe a porta '3333' do contêiner para a porta '3333' do host
     ports:
+<<<<<<< Updated upstream
       - "3333:3333"
     depends_on:
       - db
     # Comando para iniciar o servidor Node.js
     command: npm run dev
+=======
+      - 30:30
+    networks:
+      - sd_kawi
+    depends_on:
+      - backend
+
+  backend:
+    image: node:20 
+    working_dir: /src/
+    depends_on:
+      - postgresql-master
+    volumes: 
+      - ./backend:/src/
+    command: bash -c "npm run dev && npx prisma migrate dev"
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgres://my_user:my_password@postgresql-master:5432/labotech
+    networks:
+      - sd_kawi
+>>>>>>> Stashed changes
 
   frontend:
     image: node:18-slim
@@ -37,9 +59,23 @@ services:
     container_name: labotech-postgres
     # Configuração das variáveis de ambiente relacionadas ao PostgreSQL
     environment:
+<<<<<<< Updated upstream
       POSTGRES_DB: labotech
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
+=======
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=repl_password
+      - POSTGRESQL_USERNAME=my_user
+      - POSTGRESQL_PASSWORD=my_password
+      - POSTGRESQL_DATABASE=labotech
+    networks:
+      - sd_kawi
+
+  postgresql-slave:
+    image: 'bitnami/postgresql:latest'
+>>>>>>> Stashed changes
     ports:
       - "5432:5432"
 
