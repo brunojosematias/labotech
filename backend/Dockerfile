@@ -1,17 +1,9 @@
-# Use a imagem específica do node
 FROM node:18-slim
 
-# Crie o diretório da aplicação
-WORKDIR /usr/src/app
+USER node
 
-# Copie o arquivo package.json e package-lock.json
-COPY package*.json ./
+RUN mkdir -p /home/node/app/backend
 
-# Instale as dependências do projeto
-RUN npm install
+WORKDIR /home/node/app/backend
 
-# Copie o restante dos arquivos do projeto
-COPY . .
-
-# Inicie o aplicativo
-CMD [ "npm", "dev" ]
+CMD [ ".docker/start.sh"]

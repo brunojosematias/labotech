@@ -1,26 +1,16 @@
-# Define a versão do Docker Compose que está sendo usada
-version: "3"
 
-# "services" define os três containers que fazem parte da aplicação (backend, frontend e db)
+# Define a versão do Docker Compose que está sendo usada
+version: "3.8"
+
+# "services" define os containers que fazem parte da aplicação (backend, frontend e db)
 services:
-  backend: 
-    # Imagem do Docker Hub para criar um container Node.js
-    image: node:18-slim
-    container_name: backend-container
-    working_dir: /home/node/app
-    # "volumes" mapeia a pasta ./backend do host para /home/node/app dentro do container
+
+  nginx:
+    image: nginx:latest
     volumes:
-      - ./backend:/home/node/app
-    # Expõe a porta '3333' do contêiner para a porta '3333' do host
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
-<<<<<<< Updated upstream
-      - "3333:3333"
-    depends_on:
-      - db
-    # Comando para iniciar o servidor Node.js
-    command: npm run dev
-=======
-      - 30:30
+      - 80:80
     networks:
       - sd_kawi
     depends_on:
@@ -33,16 +23,17 @@ services:
       - postgresql-master
     volumes: 
       - ./backend:/src/
+    ports: 
+      - "3333"
     command: bash -c "npm run dev && npx prisma migrate dev"
     restart: unless-stopped
     environment:
-      - DATABASE_URL=postgres://my_user:my_password@postgresql-master:5432/labotech
+      - DATABASE_URL=postgresql://my_user:my_password@postgresql-master:5432/my_database
     networks:
       - sd_kawi
->>>>>>> Stashed changes
 
   frontend:
-    image: node:18-slim
+    image: node:20
     container_name: frontend-container
     working_dir: /home/node/app
     volumes:
@@ -52,35 +43,44 @@ services:
     depends_on:
       - backend
     command: npm run dev --host 0.0.0.0
+    networks:
+      - sd_kawi
 
-  db:
-    # Imagem do Docker Hub para criar um container do PostgreSQL
-    image: postgres:latest
-    container_name: labotech-postgres
-    # Configuração das variáveis de ambiente relacionadas ao PostgreSQL
+  postgresql-master:
+    image: 'bitnami/postgresql:latest'
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgresql_master_data:/bitnami/postgresql'
     environment:
-<<<<<<< Updated upstream
-      POSTGRES_DB: labotech
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-=======
       - POSTGRESQL_REPLICATION_MODE=master
       - POSTGRESQL_REPLICATION_USER=repl_user
       - POSTGRESQL_REPLICATION_PASSWORD=repl_password
       - POSTGRESQL_USERNAME=my_user
       - POSTGRESQL_PASSWORD=my_password
-      - POSTGRESQL_DATABASE=labotech
+      - POSTGRESQL_DATABASE=my_database
     networks:
       - sd_kawi
 
   postgresql-slave:
     image: 'bitnami/postgresql:latest'
->>>>>>> Stashed changes
     ports:
-      - "5432:5432"
-
-# Volumes são usados para persistência de dados entre contêineres e reinicializações
+      - '5433:5432'
+    depends_on:
+      - postgresql-master
+    environment:
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=repl_user
+      - POSTGRESQL_REPLICATION_PASSWORD=repl_password
+      - POSTGRESQL_MASTER_HOST=postgresql-master
+      - POSTGRESQL_PASSWORD=my_password
+      - POSTGRESQL_MASTER_PORT_NUMBER=5432
+    networks:
+      - sd_kawi
+      
 volumes:
-  postgres_data:
-
-# Este arquivo de composição Docker Compose cria três contêineres: um para o backend, um para o frontend e um para o banco de dados PostgreSQL. Esses contêineres são interconectados e configurados para executar os serviços Node.js e o banco de dados PostgreSQL.
+  postgresql_master_data:
+  
+networks:
+  sd_kawi:
+    driver: bridge

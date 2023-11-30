@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
+import { Button } from "../../../components/Button";
 import { ButtonSubmit } from "../../../components/ButtonSubmit";
 
 interface IStepInitial {
